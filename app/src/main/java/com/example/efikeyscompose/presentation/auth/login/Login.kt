@@ -144,7 +144,7 @@ fun LoginContent(
 
             Column(
                 modifier = Modifier
-                    .padding(bottom = 120.dp)
+                    .padding(bottom = 40.dp, top= 40.dp)
                     .align(Alignment.BottomCenter),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -178,19 +178,4 @@ fun LoginContent(
     }
 }
 
-/*
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    EfiKeysComposeTheme {
-        LoginContent(
-            context = LocalContext.current ,
-            email ="" ,
-            password = "",
-            handleEmail = {} ,
-            handlePassword = {},
-            handleClick = {  }) {
-            
-        }
-    }
-}*/
+

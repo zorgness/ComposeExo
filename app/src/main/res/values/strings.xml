@@ -18,16 +18,17 @@
     <string name="login_used">login déjà utilisé</string>
     <string name="security_failure">probléme de sécurité, déconnectez-vous!!!</string>
 
-    <string name="new_account">Nouveau compte</string>
+    <string name="new_account">Inscription</string>
     <string name="log_to_account">Connectez-vous</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="login_success">Bienvenue</string>
     <string name="password">Mot de passe</string>
-    <string name="confirm_password">Confirmation Password</string>
-    <string name="btn_register">S\'inscrire</string>
+    <string name="confirm_password">Confirmation mot de passe</string>
+    <string name="btn_register">Comfirmer l\'inscription</string>
     <string name="no_account_yet">Vous ne disposez pas d\'un compte ?</string>
+    <string name="already_an_account">Vous avez déjà un compte ?</string>
     <string name="connect">Connexion</string>
 
 </resources>
