@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#081F57</color>
+    <color name="colorPrimaryDark">#806CCEB6</color>
+    <color name="colorAccent">#6CCEB6</color>
+    <color name="colorMainOrange">#E36857</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#FFA5A3FA</color>
+    <color name="statusBarColor">#1B1F41</color>
+    <color name="textColor">#1B1F41</color>
+
+    <color name="siteIndependent">#1B1F41</color>
+    <color name="siteConstructor">#6CCEB6</color>
+    <color name="searchBarColor">#f7f7f7</color>
+    <color name="filterBtnColor">#cfd1d4</color>
+    <color name="filterBtnTextColor">#9ea0a3</color>
 </resources>

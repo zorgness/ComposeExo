@@ -1,8 +1,8 @@
 package com.example.mycomposeskeleton.dagger
 
 import android.content.Context
-import com.example.mycomposeskeleton.network.ApiRoutes
-import com.example.mycomposeskeleton.network.ApiService
+import com.example.mycomposeskeleton.data.ApiRoutes
+import com.example.mycomposeskeleton.data.ApiService
 import com.example.mycomposeskeleton.service.MySharedPref
 
 import com.squareup.moshi.Moshi

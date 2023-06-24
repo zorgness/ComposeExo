@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ComposeAmplify</string>
+    <string name="app_name">EfiKeysCompose</string>
 
     <!--ERROR_NETWORK-->
     <string name="error_server">erreur serveur</string>
@@ -14,6 +14,7 @@
     <string name="error_confirmation">mot de passe différent de confirmation</string>
     <string name="account_failed">nouveau compte non créé</string>
     <string name="account_success">nouveau compte ajouté</string>
+    <string name="forget_password"><u>Mot de passe oublié</u></string>
     <string name="login_used">login déjà utilisé</string>
     <string name="security_failure">probléme de sécurité, déconnectez-vous!!!</string>
 
@@ -23,10 +24,10 @@
     <string name="email">Email</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="login_success">Bienvenue</string>
-    <string name="password">Password</string>
+    <string name="password">Mot de passe</string>
     <string name="confirm_password">Confirmation Password</string>
     <string name="btn_register">S\'inscrire</string>
-    <string name="no_account_yet">Pas de compte ? inscrivez-vous !</string>
-    <string name="connect">Se connecter</string>
+    <string name="no_account_yet">Vous ne disposez pas d\'un compte ?</string>
+    <string name="connect">Connexion</string>
 
 </resources>

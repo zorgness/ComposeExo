@@ -1,7 +1,7 @@
 package com.example.mycomposeskeleton
 
 import LoginScreen
-import com.example.mycomposeskeleton.ui.register.RegisterScreen
+import com.example.mycomposeskeleton.presentation.auth.register.RegisterScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,13 +15,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.mycomposeskeleton.ui.login.LoginViewModel
-import com.example.mycomposeskeleton.ui.main.MainScreen
-import com.example.mycomposeskeleton.ui.main.MainViewModel
-import com.example.mycomposeskeleton.ui.register.RegisterViewModel
-import com.example.mycomposeskeleton.ui.splash.SplashScreen
-import com.example.mycomposeskeleton.ui.splash.SplashViewModel
-import com.example.mycomposeskeleton.ui.theme.MyComposeSkeletonTheme
+import com.example.mycomposeskeleton.presentation.auth.login.LoginViewModel
+import com.example.mycomposeskeleton.presentation.main.MainScreen
+import com.example.mycomposeskeleton.presentation.main.MainViewModel
+import com.example.mycomposeskeleton.presentation.auth.register.RegisterViewModel
+import com.example.mycomposeskeleton.presentation.splash.SplashScreen
+import com.example.mycomposeskeleton.presentation.splash.SplashViewModel
+import com.example.mycomposeskeleton.presentation.ui.theme.EfiKeysComposeTheme
 import com.example.mycomposeskeleton.utils.Screen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyComposeSkeletonTheme {
+            EfiKeysComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -70,7 +70,7 @@ fun AppNavigation() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MyComposeSkeletonTheme {
+    EfiKeysComposeTheme {
 
     }
 }
