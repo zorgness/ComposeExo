@@ -3,8 +3,11 @@ package com.example.efikeyscompose.presentation.auth.register
 import CustomTextField
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -14,11 +17,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.efikeyscompose.R
+import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
+import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
+import com.example.efikeyscompose.utils.Screen
 
 @Composable
 fun RegisterScreen(
@@ -71,7 +79,10 @@ fun RegisterScreen(
         handleUsername = { viewModel.updateUsername(it) },
         handlePassword = { viewModel.updatePassword(it) },
         handleConfirm = { viewModel.updateConfirm(it) },
-        handleClick = { viewModel.register() }
+        handleClick = { viewModel.register() },
+        goToLogin = {
+            navController.navigate(Screen.Login.route)
+        }
     )
 }
 
@@ -86,82 +97,127 @@ fun RegisterContent(
     handleUsername: (String) -> Unit,
     handlePassword: (String) -> Unit,
     handleConfirm: (String) -> Unit,
-    handleClick: () -> Unit
+    handleClick: () -> Unit,
+    goToLogin: () -> Unit
 ) {
 
 
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(40.dp)
+            .padding(horizontal = 40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.efikeys_logo) ,
+            contentDescription = null,
+            modifier = Modifier.padding(top= 10.dp)
+        )
+        Spacer(modifier = Modifier.height(20.dp))
         Text(
             text = context.getString(R.string.new_account),
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
+            style = MaterialTheme.typography.h2,
+            modifier = Modifier.padding(10.dp)
+
         )
+        Spacer(modifier = Modifier.height(24.dp))
 
-        Column(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(horizontal = 40.dp)
-                .padding(bottom = 140.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Box(
+            modifier = Modifier.fillMaxHeight()
         ) {
-            CustomTextField(
-                placeholder = context.getString(R.string.email),
-                value = email,
-                handleValue = { handleEmail(it) }
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            CustomTextField(
-                placeholder = context.getString(R.string.username),
-                value = username,
-                handleValue = { handleUsername(it) }
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            CustomTextField(
-                placeholder = context.getString(R.string.password),
-                value = password,
-                isPassword = true,
-                handleValue = { handlePassword(it) }
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            CustomTextField(
-                placeholder = context.getString(R.string.confirm_password),
-                value = confirm,
-                isPassword = true,
-                handleValue = { handleConfirm(it) }
-            )
-            Spacer(modifier = Modifier.height(30.dp))
 
-        }
-
-
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 120.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Button(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 40.dp),
-                onClick = { handleClick() }
+                    .padding(horizontal = 20.dp)
+                    .align(Alignment.TopCenter),
             ) {
-                Text(
-                    text = context.getString(R.string.btn_register),
-                    color = Color.White
+                CustomTextField(
+                    placeholder = context.getString(R.string.email),
+                    value = email,
+                    handleValue = { handleEmail(it) }
                 )
+                Spacer(modifier = Modifier.height(30.dp))
+                CustomTextField(
+                    placeholder = context.getString(R.string.username),
+                    value = username,
+                    handleValue = { handleUsername(it) }
+                )
+                Spacer(modifier = Modifier.height(30.dp))
+                CustomTextField(
+                    placeholder = context.getString(R.string.password),
+                    value = password,
+                    isPassword = true,
+                    handleValue = { handlePassword(it) }
+                )
+                Spacer(modifier = Modifier.height(30.dp))
+                CustomTextField(
+                    placeholder = context.getString(R.string.confirm_password),
+                    value = confirm,
+                    isPassword = true,
+                    handleValue = { handleConfirm(it) }
+                )
+                Spacer(modifier = Modifier.height(30.dp))
+
+            }
+
+
+            Column(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 120.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(48.dp)
+                        .padding(horizontal = 20.dp)
+                        ,
+                    onClick = { handleClick() }
+                ) {
+                    Text(
+                        text = context.getString(R.string.btn_register),
+                        color = Color.White
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                Text(
+                    text = context.getString(R.string.already_an_account),
+                    color = ColorPrimary,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.clickable { goToLogin()  }
+                )
+
             }
 
         }
+
     }
 
 }
+
+
+/*
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    EfiKeysComposeTheme {
+       RegisterContent(
+           context = LocalContext.current,
+           email = "",
+           username ="" ,
+           password = "",
+           confirm = "" ,
+           handleEmail = {},
+           handleUsername = {},
+           handlePassword ={} ,
+           handleConfirm = {},
+           handleClick = {},
+           goToLogin = {}
+       )
+    }
+}*/
