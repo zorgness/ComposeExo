@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.mycomposeskeleton'
+    namespace 'com.example.efikeyscompose'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.mycomposeskeleton"
+        applicationId "com.example.efikeyscompose"
         minSdk 24
         targetSdk 33
         versionCode 1
