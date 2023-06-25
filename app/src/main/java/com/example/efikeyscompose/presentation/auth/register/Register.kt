@@ -137,20 +137,20 @@ fun RegisterContent(
                     value = email,
                     handleValue = { handleEmail(it) }
                 )
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 CustomTextField(
                     placeholder = context.getString(R.string.username),
                     value = username,
                     handleValue = { handleUsername(it) }
                 )
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 CustomTextField(
                     placeholder = context.getString(R.string.password),
                     value = password,
                     isPassword = true,
                     handleValue = { handlePassword(it) }
                 )
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 CustomTextField(
                     placeholder = context.getString(R.string.confirm_password),
                     value = confirm,
@@ -165,7 +165,7 @@ fun RegisterContent(
             Column(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 120.dp),
+                    .padding(vertical = 80.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
