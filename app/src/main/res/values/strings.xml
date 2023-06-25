@@ -26,7 +26,7 @@
     <string name="login_success">Bienvenue</string>
     <string name="password">Mot de passe</string>
     <string name="confirm_password">Confirmation mot de passe</string>
-    <string name="btn_register">Comfirmer l\'inscription</string>
+    <string name="btn_register">Confirmer l\'inscription</string>
     <string name="no_account_yet">Vous ne disposez pas d\'un compte ?</string>
     <string name="already_an_account">Vous avez déjà un compte ?</string>
     <string name="connect">Connexion</string>

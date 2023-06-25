@@ -1,7 +1,9 @@
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -18,6 +20,7 @@ fun CustomTextField(
 
     OutlinedTextField(
         value = value,
+        modifier = Modifier.fillMaxWidth(),
         onValueChange = { handleValue(it) },
         label = { Text(text = placeholder ?: "") },
         placeholder = { Text(text = placeholder ?: "") },

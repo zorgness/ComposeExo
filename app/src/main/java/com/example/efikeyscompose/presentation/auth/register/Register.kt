@@ -106,7 +106,7 @@ fun RegisterContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 40.dp),
+            .padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
@@ -118,7 +118,6 @@ fun RegisterContent(
         Text(
             text = context.getString(R.string.new_account),
             style = MaterialTheme.typography.h2,
-            modifier = Modifier.padding(10.dp)
 
         )
         Spacer(modifier = Modifier.height(24.dp))
@@ -131,6 +130,7 @@ fun RegisterContent(
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
                     .align(Alignment.TopCenter),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CustomTextField(
                     placeholder = context.getString(R.string.email),
@@ -164,8 +164,8 @@ fun RegisterContent(
 
             Column(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(vertical = 80.dp),
+                    .padding(bottom = 40.dp, top= 40.dp)
+                    .align(Alignment.BottomCenter),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
