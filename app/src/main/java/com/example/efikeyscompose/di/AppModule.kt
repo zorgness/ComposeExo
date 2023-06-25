@@ -1,4 +1,4 @@
-package com.example.efikeyscompose.dagger
+package com.example.efikeyscompose.di
 
 import android.content.Context
 import com.example.efikeyscompose.data.ApiRoutes

@@ -15,6 +15,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleScreen
+import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleViewModel
 import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
 import com.example.efikeyscompose.presentation.home.HomeScreen
 import com.example.efikeyscompose.presentation.home.MainViewModel
@@ -62,6 +64,11 @@ fun AppNavigation() {
         composable(Screen.Home.route) {
             val mainViewModel: MainViewModel = hiltViewModel()
             HomeScreen(navController, mainViewModel)
+        }
+
+        composable(Screen.AddVehicle.route) {
+            val addVehicleViewModel: AddVehicleViewModel = hiltViewModel()
+            AddVehicleScreen(navController, addVehicleViewModel)
         }
     }
 }

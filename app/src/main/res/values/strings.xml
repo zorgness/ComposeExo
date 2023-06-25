@@ -31,10 +31,16 @@
     <string name="already_an_account">Vous avez déjà un compte ?</string>
     <string name="connect">Connexion</string>
 
-  <!--  HOME-->
+   <!--  HOME-->
     <string name="home">Accueil</string>
     <string name="keys_possession">Clés en votre possession</string>
     <string name="change_site">Changer de site</string>
     <string name="add_vehicle_to_garage">Ajouter un véhicule au garage</string>
+
+   <!-- ADD VEHICLE-->
+    <string name="lincense">Plaque d\'immatriculation</string>
+    <string name="kilometers_vehicle">Kilométrage du véhicule (km)</string>
+    <string name="add_vehicle">Ajouter un véhicule</string>
+    <string name="done">Terminer</string>
 
 </resources>
