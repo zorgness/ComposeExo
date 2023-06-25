@@ -7,31 +7,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.core.text.isDigitsOnly
+import com.example.efikeyscompose.utils.thousandFilter
 
 @Composable
-fun CustomTextField(
+fun CustomTextFieldKilometers(
     placeholder: String?,
     value: String,
-    isPassword: Boolean = false,
     handleValue: (String) -> Unit,
     maxLines: Int = 1,
-
 ) {
 
     OutlinedTextField(
         value = value,
         modifier = Modifier.fillMaxWidth(),
-        onValueChange = { handleValue(it) },
+        onValueChange = { if(it.isDigitsOnly()) handleValue(it) else handleValue("0") },
         label = { Text(text = placeholder ?: "") },
         placeholder = { Text(text = placeholder ?: "") },
-        visualTransformation = if (isPassword) PasswordVisualTransformation()
-                               else VisualTransformation.None,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        visualTransformation = { annotatedString ->
+                thousandFilter(annotatedString.text)
+        },
         minLines = maxLines,
         maxLines = maxLines,
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color.White
         ),
-)
+    )
 }

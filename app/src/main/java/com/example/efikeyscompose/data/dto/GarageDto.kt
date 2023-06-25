@@ -1,5 +1,8 @@
 package com.example.efikeyscompose.data.dto
 
+import android.net.Uri
+import java.util.*
+
 data class Garage(
     val id: Long,
     val name: String,
@@ -11,7 +14,7 @@ data class Garage(
             100,
             "Speedy Charles de Fitte",
             GarageStatusEnum.INDEPENDENT,
-            "https://www.realisaprint.com/blog/wp-content/uploads/2018/04/impression-garage-automobile.jpg"
+            "https://www.auto-infos.fr/mediatheque/4/4/8/000089844_600x400_c.jpg"
         )
 
         val SAMPLES: List<Garage> = listOf(
@@ -78,4 +81,12 @@ enum class BoxStatusEnum {
     INBOX,
     INBOX_DOCK,
     USED
+}
+
+sealed class AddVehicleItem {
+    object CameraCard : AddVehicleItem()
+    data class CarCard(
+        val id: String ? = UUID.randomUUID().toString(),
+        val imageUri: Uri
+    ) : AddVehicleItem()
 }

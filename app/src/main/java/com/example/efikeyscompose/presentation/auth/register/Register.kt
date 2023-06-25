@@ -110,9 +110,10 @@ fun RegisterContent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.efikeys_logo) ,
+            painter = painterResource(id = R.drawable.efikeys_logo),
             contentDescription = null,
-            modifier = Modifier.padding(top= 10.dp)
+            modifier = Modifier
+                .padding(top= 10.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
         Text(

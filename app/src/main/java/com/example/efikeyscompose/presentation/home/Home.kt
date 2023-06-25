@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -33,7 +32,6 @@ import com.example.efikeyscompose.data.dto.Garage
 import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.home.components.HomeVehicleItem
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
-import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
 import com.example.efikeyscompose.utils.Screen
 
 @Composable
@@ -66,7 +64,10 @@ fun HomeScreen(
         context = context,
         garage = garage,
         vehicleList = vehicleList,
-        navController = navController
+        navController = navController,
+        goToAddVehicle = {
+            navController.navigate(Screen.AddVehicle.route)
+        }
     ) {
         viewModel.logout()
     }
@@ -78,7 +79,9 @@ fun HomeContent(
     garage: Garage,
     vehicleList: List<Vehicle>,
     navController: NavHostController? = null,
-    handleLogout: () -> Unit
+    goToAddVehicle: () -> Unit,
+    handleLogout: () -> Unit,
+
 ) {
 
     Box(
@@ -149,7 +152,7 @@ fun HomeContent(
                     .fillMaxWidth()
                     .padding(horizontal = 40.dp, vertical = 24.dp)
                     .height(44.dp),
-                onClick = { /*TODO*/ }
+                onClick = { goToAddVehicle() }
             ) {
                 Text(
                     text = context.getString(R.string.add_vehicle_to_garage),
@@ -213,9 +216,9 @@ fun HomeContent(
 
 
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun com.example.efikeyscompose.presentation.add_vehicle.components.DefaultPreview() {
     EfiKeysComposeTheme {
         HomeContent(
             context = LocalContext.current,
@@ -232,4 +235,4 @@ fun DefaultPreview() {
 
         }
     }
-}
+}*/

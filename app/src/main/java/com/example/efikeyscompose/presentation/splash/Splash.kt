@@ -1,10 +1,7 @@
 package com.example.efikeyscompose.presentation.splash
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -51,7 +48,9 @@ fun SplashContent() {
         Image(
             painter = painterResource(id = R.drawable.efikeys_logo) ,
             contentDescription = null,
-            modifier = Modifier.padding(top= 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top= 10.dp)
         )
 
     }

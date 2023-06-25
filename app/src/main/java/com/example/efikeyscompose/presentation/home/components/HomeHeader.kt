@@ -21,20 +21,19 @@ fun HomeHeader(
         modifier = Modifier
             .fillMaxWidth()
             .height(72.dp)
+            .padding(20.dp)
     ) {
         Text(
             text = LocalContext.current.getString(R.string.home),
             style = MaterialTheme.typography.h2,
             modifier = Modifier
                 .align(Alignment.CenterStart)
-                .padding(start = 20.dp)
 
         )
         Row(
             modifier = Modifier
-                .width(100.dp)
                 .align(Alignment.CenterEnd)
-                .padding(end = 20.dp),
+                .width(100.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Icon(

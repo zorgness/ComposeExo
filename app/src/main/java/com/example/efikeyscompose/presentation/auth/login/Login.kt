@@ -96,7 +96,9 @@ fun LoginContent(
         Image(
             painter = painterResource(id = R.drawable.efikeys_logo) ,
             contentDescription = null,
-            modifier = Modifier.padding(top= 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top= 10.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
         Text(
@@ -117,7 +119,7 @@ fun LoginContent(
                     .align(Alignment.TopCenter),
                 horizontalAlignment = Alignment.CenterHorizontally
 
-                ) {
+            ) {
                 CustomTextField(
                     placeholder = context.getString(R.string.email),
                     value = email,
