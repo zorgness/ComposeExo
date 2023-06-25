@@ -6,6 +6,8 @@ import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -27,6 +29,9 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.efikeyscompose.R
+import com.example.efikeyscompose.data.dto.Garage
+import com.example.efikeyscompose.data.dto.Vehicle
+import com.example.efikeyscompose.presentation.home.components.HomeVehicleItem
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
 import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
 import com.example.efikeyscompose.utils.Screen
@@ -38,6 +43,14 @@ fun HomeScreen(
 ) {
 
     val context = LocalContext.current
+    val garage = Garage.SAMPLE
+    val vehicleList = listOf(
+        Vehicle.SAMPLE,
+        Vehicle.SAMPLE,
+        Vehicle.SAMPLE,
+        Vehicle.SAMPLE,
+        Vehicle.SAMPLE,
+    )
 
     LaunchedEffect(true) {
         viewModel.goToLoginSharedFlow.collect {
@@ -51,6 +64,8 @@ fun HomeScreen(
 
     HomeContent(
         context = context,
+        garage = garage,
+        vehicleList = vehicleList,
         navController = navController
     ) {
         viewModel.logout()
@@ -60,11 +75,11 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     context: Context,
+    garage: Garage,
+    vehicleList: List<Vehicle>,
     navController: NavHostController? = null,
     handleLogout: () -> Unit
 ) {
-    val imageUrl = "https://www.realisaprint.com/blog/wp-content/uploads/2018/04/impression-garage-automobile.jpg"
-    val garageName = "Speedy Charles de Fitte"
 
     Box(
         modifier = Modifier.fillMaxHeight()
@@ -82,7 +97,7 @@ fun HomeContent(
             Box() {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(imageUrl)
+                        .data(garage.imageUrl)
                         .crossfade(true)
                         .build(),
                     contentDescription = null,
@@ -98,7 +113,7 @@ fun HomeContent(
                 )
 
                 Text(
-                    text = garageName,
+                    text = garage.name,
                     style = MaterialTheme.typography.h3,
                     color = Color.White,
                     modifier = Modifier
@@ -143,7 +158,7 @@ fun HomeContent(
             }
 
             Row(
-                modifier = Modifier.padding(start = 10.dp),
+                modifier = Modifier.padding(start = 10.dp, bottom = 10.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -167,7 +182,15 @@ fun HomeContent(
                     modifier = Modifier.padding(start = 10.dp),
                     style = MaterialTheme.typography.h4
                 )
+            }
 
+            LazyColumn(
+                modifier = Modifier.padding(bottom = 72.dp)
+            ) {
+                items(vehicleList) {vehicle ->
+                    HomeVehicleItem(vehicle)
+
+                }
             }
         }
 
@@ -196,6 +219,14 @@ fun DefaultPreview() {
     EfiKeysComposeTheme {
         HomeContent(
             context = LocalContext.current,
+            garage = Garage.SAMPLE,
+            vehicleList = listOf(
+                Vehicle.SAMPLE,
+                Vehicle.SAMPLE,
+                Vehicle.SAMPLE,
+                Vehicle.SAMPLE,
+                Vehicle.SAMPLE,
+            ),
             navController = null
         ) {
 
