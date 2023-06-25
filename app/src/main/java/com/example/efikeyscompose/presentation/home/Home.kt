@@ -1,6 +1,8 @@
 package com.example.efikeyscompose.presentation.home
 
+import BottomNavigationScreen
 import HomeHeader
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,10 +19,8 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -37,6 +37,7 @@ fun HomeScreen(
     viewModel: MainViewModel
 ) {
 
+    val context = LocalContext.current
 
     LaunchedEffect(true) {
         viewModel.goToLoginSharedFlow.collect {
@@ -48,117 +49,143 @@ fun HomeScreen(
         }
     }
 
-    HomeContent() {
+    HomeContent(
+        context = context,
+        navController = navController
+    ) {
         viewModel.logout()
     }
 }
 
 @Composable
 fun HomeContent(
-
+    context: Context,
+    navController: NavHostController? = null,
     handleLogout: () -> Unit
 ) {
     val imageUrl = "https://www.realisaprint.com/blog/wp-content/uploads/2018/04/impression-garage-automobile.jpg"
     val garageName = "Speedy Charles de Fitte"
-    Column(
-        modifier = Modifier.fillMaxSize()
+
+    Box(
+        modifier = Modifier.fillMaxHeight()
     ) {
-        HomeHeader(
-            onLogoutIconClicked = { handleLogout() }
-        )
 
-        Box() {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(imageUrl)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(168.dp),
-                contentScale = ContentScale.FillWidth,
-                colorFilter = ColorFilter.tint(
-                    color = Color.Black.copy(alpha = 0.3f),
-                    blendMode = BlendMode.Darken
-
-                )
-            )
-
-            Text(
-                text = garageName,
-                style = MaterialTheme.typography.h3,
-                color = Color.White,
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .width(240.dp)
-                    .padding(20.dp)
-            )
-        }
-
-        Box(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(28.dp)
-                .clip(
-                    shape = RoundedCornerShape(
-                        bottomStart = 20.dp,
-                        bottomEnd = 20.dp
-                    )
-                )
-                .background(ColorAccent)
+                .fillMaxSize()
+                .align(Alignment.TopCenter)
         ) {
-            Text(
-                text = "Changer de site",
-                color = Color.White,
-                style = MaterialTheme.typography.h4,
-                modifier = Modifier.align(Alignment.Center)
+            HomeHeader(
+                onLogoutIconClicked = { handleLogout() }
             )
 
-        }
-
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp, vertical = 24.dp)
-                .height(44.dp),
-            onClick = { /*TODO*/ }
-        ) {
-            Text(
-                text = "Ajouter un véhicule au garage",
-                style = MaterialTheme.typography.h4
-            )
-        }
-
-        Row(
-            modifier = Modifier.padding(start = 10.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(shape = RoundedCornerShape(12.dp))
-                    .background(ColorAccent)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.key_icon) ,
+            Box() {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(imageUrl)
+                        .crossfade(true)
+                        .build(),
                     contentDescription = null,
                     modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(28.dp)
+                        .fillMaxWidth()
+                        .height(168.dp),
+                    contentScale = ContentScale.FillWidth,
+                    colorFilter = ColorFilter.tint(
+                        color = Color.Black.copy(alpha = 0.3f),
+                        blendMode = BlendMode.Darken
+
+                    )
+                )
+
+                Text(
+                    text = garageName,
+                    style = MaterialTheme.typography.h3,
+                    color = Color.White,
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .width(240.dp)
+                        .padding(20.dp)
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(28.dp)
+                    .clip(
+                        shape = RoundedCornerShape(
+                            bottomStart = 20.dp,
+                            bottomEnd = 20.dp
+                        )
+                    )
+                    .background(ColorAccent)
+            ) {
+                Text(
+                    text = context.getString(R.string.change_site),
+                    color = Color.White,
+                    style = MaterialTheme.typography.h4,
+                    modifier = Modifier.align(Alignment.Center)
                 )
 
             }
-            Text(
-                text = "Clés en votre possesion",
-                modifier = Modifier.padding(start = 10.dp),
-                style = MaterialTheme.typography.h4
-            )
 
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 40.dp, vertical = 24.dp)
+                    .height(44.dp),
+                onClick = { /*TODO*/ }
+            ) {
+                Text(
+                    text = context.getString(R.string.add_vehicle_to_garage),
+                    style = MaterialTheme.typography.h4
+                )
+            }
+
+            Row(
+                modifier = Modifier.padding(start = 10.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(shape = RoundedCornerShape(12.dp))
+                        .background(ColorAccent)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.key_icon) ,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .size(28.dp)
+                    )
+
+                }
+                Text(
+                    text = context.getString(R.string.keys_possession),
+                    modifier = Modifier.padding(start = 10.dp),
+                    style = MaterialTheme.typography.h4
+                )
+
+            }
         }
 
+
+        if (navController != null) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+            ) {
+                BottomNavigationScreen(
+                    navController = navController
+                )
+            }
+
+        }
     }
+
 }
 
 
@@ -167,7 +194,10 @@ fun HomeContent(
 @Composable
 fun DefaultPreview() {
     EfiKeysComposeTheme {
-        HomeContent {
+        HomeContent(
+            context = LocalContext.current,
+            navController = null
+        ) {
 
         }
     }

@@ -32,6 +32,9 @@
     <string name="connect">Connexion</string>
 
   <!--  HOME-->
-    <string name="home">Acceuil</string>
+    <string name="home">Accueil</string>
+    <string name="keys_possession">Clés en votre possession</string>
+    <string name="change_site">Changer de site</string>
+    <string name="add_vehicle_to_garage">Ajouter un véhicule au garage</string>
 
 </resources>
