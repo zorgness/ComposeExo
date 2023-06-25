@@ -1,4 +1,4 @@
-package com.example.efikeyscompose.presentation.main
+package com.example.efikeyscompose.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

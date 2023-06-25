@@ -31,4 +31,7 @@
     <string name="already_an_account">Vous avez déjà un compte ?</string>
     <string name="connect">Connexion</string>
 
+  <!--  HOME-->
+    <string name="home">Acceuil</string>
+
 </resources>

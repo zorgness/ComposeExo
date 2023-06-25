@@ -19,6 +19,7 @@ fun CustomTextField(
     OutlinedTextField(
         value = value,
         onValueChange = { handleValue(it) },
+        label = { Text(text = placeholder ?: "") },
         placeholder = { Text(text = placeholder ?: "") },
         visualTransformation = if (isPassword) PasswordVisualTransformation()
         else VisualTransformation.None,

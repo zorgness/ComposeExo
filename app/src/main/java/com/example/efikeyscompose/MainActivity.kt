@@ -16,8 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
-import com.example.efikeyscompose.presentation.main.MainScreen
-import com.example.efikeyscompose.presentation.main.MainViewModel
+import com.example.efikeyscompose.presentation.home.HomeScreen
+import com.example.efikeyscompose.presentation.home.MainViewModel
 import com.example.efikeyscompose.presentation.auth.register.RegisterViewModel
 import com.example.efikeyscompose.presentation.splash.SplashScreen
 import com.example.efikeyscompose.presentation.splash.SplashViewModel
@@ -59,9 +59,9 @@ fun AppNavigation() {
             val loginViewModel: LoginViewModel = hiltViewModel()
             LoginScreen(navController, loginViewModel)
         }
-        composable(Screen.Main.route) {
+        composable(Screen.Home.route) {
             val mainViewModel: MainViewModel = hiltViewModel()
-            MainScreen(navController, mainViewModel)
+            HomeScreen(navController, mainViewModel)
         }
     }
 }

@@ -201,23 +201,4 @@ fun RegisterContent(
 }
 
 
-/*
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    EfiKeysComposeTheme {
-       RegisterContent(
-           context = LocalContext.current,
-           email = "",
-           username ="" ,
-           password = "",
-           confirm = "" ,
-           handleEmail = {},
-           handleUsername = {},
-           handlePassword ={} ,
-           handleConfirm = {},
-           handleClick = {},
-           goToLogin = {}
-       )
-    }
-}*/
+

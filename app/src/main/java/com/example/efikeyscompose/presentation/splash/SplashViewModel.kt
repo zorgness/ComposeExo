@@ -23,7 +23,7 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             delay(2000)
             sharedPref.token?.let {
-                _goToScreen.emit(Screen.Main)
+                _goToScreen.emit(Screen.Home)
             }
                 ?:  _goToScreen.emit(Screen.Login)
 
