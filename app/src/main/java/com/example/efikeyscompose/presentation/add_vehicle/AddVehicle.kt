@@ -51,6 +51,8 @@ fun AddVehicleScreen(
     val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri ->
+
+            // TODO find a way to stop nullability
             viewModel.addToList(
                 AddVehicleItem.CarCard(
                     imageUri = uri
@@ -138,6 +140,7 @@ fun AddVehicleContent(
             Spacer(modifier = Modifier.height(40.dp))
             CustomTextFieldKilometers(
                 placeholder = context.getString(R.string.kilometers_vehicle),
+                // TODO crash when delete last digit from text field
                 value = if(kilometers == 0) "" else kilometers.toString(),
                 handleValue = { handleKilometers(it.toInt()) }
             )
