@@ -161,7 +161,7 @@ fun AddVehicleContent(
 
                         when(list[index]) {
                             is AddVehicleItem.CameraCard -> {
-                                CameraCardItem() {
+                                CameraCardItem {
                                     handleGallery()
                                 }
                             }
@@ -195,14 +195,9 @@ fun AddVehicleContent(
                         color = Color.White
                     )
                 }
-
             }
-
-
         }
-
     }
-
 }
 
 

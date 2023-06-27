@@ -8,10 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
 import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 import com.example.efikeyscompose.utils.BottomNavItem
 
@@ -46,7 +48,9 @@ fun BottomNavigationScreen(
                         painterResource(id = item.icon),
                         contentDescription = item.screenRoute,
                         modifier = Modifier.size(24.dp),
-                        tint= item.color
+                        // TODO temporary color
+                        tint = item.color
+                        //tint= if(currentRoute == item.screenRoute) ColorAccent else Color.White
                     )
 
                 },
