@@ -5,6 +5,7 @@ import HomeHeader
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -65,6 +66,9 @@ fun HomeScreen(
         garage = garage,
         vehicleList = vehicleList,
         navController = navController,
+        goToSite = {
+            navController.navigate(Screen.Site.route)
+        },
         goToAddVehicle = {
             navController.navigate(Screen.AddVehicle.route)
         }
@@ -79,6 +83,7 @@ fun HomeContent(
     garage: Garage,
     vehicleList: List<Vehicle>,
     navController: NavHostController? = null,
+    goToSite: () -> Unit,
     goToAddVehicle: () -> Unit,
     handleLogout: () -> Unit,
 
@@ -143,6 +148,9 @@ fun HomeContent(
                     color = Color.White,
                     style = MaterialTheme.typography.h4,
                     modifier = Modifier.align(Alignment.Center)
+                        .clickable {
+                            goToSite()
+                        }
                 )
 
             }

@@ -50,15 +50,11 @@ fun AddVehicleScreen(
 
     val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri ->
-
-            // TODO find a way to stop nullability
-            viewModel.addToList(
-                AddVehicleItem.CarCard(
-                    imageUri = uri
-                    ?:
-                    Uri.parse(""))
-            )
+        onResult = { it?.let {
+                viewModel.addToList(
+                    AddVehicleItem.CarCard(imageUri = it)
+                )
+            }
         }
     )
 
