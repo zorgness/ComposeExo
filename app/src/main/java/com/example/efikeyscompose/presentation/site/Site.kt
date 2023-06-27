@@ -42,10 +42,7 @@ fun SiteScreen(
         handleClick = {
             navController.navigate(Screen.Home.route)
         },
-        handleSelected = {
-            viewModel.updateSelected(it)
-        }
-
+        handleSelected = { viewModel.updateSelected(it) }
     )
 }
 
@@ -83,7 +80,7 @@ fun SiteContent(
                         bottom = 80.dp
                     )
             ) {
-                items(siteList) {site->
+                items(siteList) {site ->
                     SiteItem(
                         site,
                         selectedId = selectedId
@@ -91,7 +88,6 @@ fun SiteContent(
                     { handleSelected(it) }
                 }
             }
-
         }
 
 
@@ -107,9 +103,8 @@ fun SiteContent(
                     .align(Alignment.Center)
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                onClick = {
-                    handleClick()
-                }) {
+                onClick = { handleClick() }
+            ) {
                 Text(
                     text= context.getString(R.string.confirm),
                     fontWeight = FontWeight.SemiBold

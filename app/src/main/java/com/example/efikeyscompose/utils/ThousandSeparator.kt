@@ -3,7 +3,6 @@ package com.example.efikeyscompose.utils
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
-import androidx.core.text.isDigitsOnly
 
 private fun String.withThousands(separator: Char = ' '): String {
     val original = this
@@ -19,7 +18,7 @@ private fun String.withThousands(separator: Char = ' '): String {
     }
 }
 
-fun thousandFilter(
+fun thousandSeparator(
     text: String,
     thousandSeparator: (String) -> String = { numberStr -> numberStr.withThousands() },
 ): TransformedText {

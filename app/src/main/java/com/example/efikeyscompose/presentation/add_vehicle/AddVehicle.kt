@@ -80,10 +80,10 @@ fun AddVehicleScreen(
 fun AddVehicleContent(
     context: Context,
     license: String,
-    kilometers: Int,
+    kilometers: Long,
     list: List<AddVehicleItem>,
     handleLicense: (String) -> Unit,
-    handleKilometers: (Int) -> Unit,
+    handleKilometers: (Long) -> Unit,
     handleNavBack: () -> Unit,
     handleGallery: () -> Unit,
     handleRemoveItem: (AddVehicleItem.CarCard) -> Unit
@@ -136,9 +136,9 @@ fun AddVehicleContent(
             Spacer(modifier = Modifier.height(40.dp))
             CustomTextFieldKilometers(
                 placeholder = context.getString(R.string.kilometers_vehicle),
-                // TODO crash when delete last digit from text field
-                value = if(kilometers == 0) "" else kilometers.toString(),
-                handleValue = { handleKilometers(it.toInt()) }
+                value = if(kilometers == 0L) "" else kilometers.toString(),
+                // TODO find a better way
+                handleValue = { handleKilometers(it.toLongOrNull() ?: 0L) }
             )
 
         }

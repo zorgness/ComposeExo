@@ -15,7 +15,7 @@ class AddVehicleViewModel @Inject constructor(
     private val _licenceStateFlow = MutableStateFlow("")
     val licenceStateFlow = _licenceStateFlow.asStateFlow()
 
-    private val _kilometersStateFlow = MutableStateFlow(0)
+    private val _kilometersStateFlow = MutableStateFlow(0L)
     val kilometersStateFlow = _kilometersStateFlow.asStateFlow()
 
     private var _itemListStateFlow = MutableStateFlow<List<AddVehicleItem>>(emptyList())
@@ -42,7 +42,7 @@ class AddVehicleViewModel @Inject constructor(
         _licenceStateFlow.value = licence
     }
 
-    fun updateKilometers(kilometers: Int) {
+    fun updateKilometers(kilometers: Long) {
         _kilometersStateFlow.value = kilometers
     }
 
