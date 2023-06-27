@@ -21,6 +21,8 @@ import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
 import com.example.efikeyscompose.presentation.home.HomeScreen
 import com.example.efikeyscompose.presentation.home.MainViewModel
 import com.example.efikeyscompose.presentation.auth.register.RegisterViewModel
+import com.example.efikeyscompose.presentation.site.SiteScreen
+import com.example.efikeyscompose.presentation.site.SiteViewModel
 import com.example.efikeyscompose.presentation.splash.SplashScreen
 import com.example.efikeyscompose.presentation.splash.SplashViewModel
 import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
@@ -69,6 +71,11 @@ fun AppNavigation() {
         composable(Screen.AddVehicle.route) {
             val addVehicleViewModel: AddVehicleViewModel = hiltViewModel()
             AddVehicleScreen(navController, addVehicleViewModel)
+        }
+
+        composable(Screen.Site.route) {
+            val siteViewModel: SiteViewModel = hiltViewModel()
+            SiteScreen(navController, siteViewModel)
         }
     }
 }

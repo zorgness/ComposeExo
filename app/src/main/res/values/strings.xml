@@ -43,4 +43,9 @@
     <string name="add_vehicle">Ajouter un véhicule</string>
     <string name="done">Terminer</string>
 
+   <!-- SITE-->
+    <string name="confirm">Confirmé</string>
+    <string name="site_activity">Sites d\'activités</string>
+    <string name="select_site_activity">Sélectionner votre site d\'activité principal</string>
+
 </resources>

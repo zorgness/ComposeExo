@@ -1,6 +1,9 @@
 package com.example.efikeyscompose.data.dto
 
 import android.net.Uri
+import androidx.compose.ui.graphics.Color
+import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
+import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 import java.util.*
 
 data class Garage(
@@ -20,7 +23,15 @@ data class Garage(
         val SAMPLES: List<Garage> = listOf(
             SAMPLE,
             SAMPLE.copy(id = 200, name = "Speedy Charles de Fitte"),
-            SAMPLE.copy(id = 300, status = GarageStatusEnum.CONSTRUCTOR)
+            SAMPLE.copy(id = 300, status = GarageStatusEnum.CONSTRUCTOR),
+            SAMPLE.copy(id = 400, name = "Speedy Charles de Fitte"),
+            SAMPLE.copy(id = 500, status = GarageStatusEnum.CONSTRUCTOR),
+            SAMPLE.copy(id = 600, name = "Speedy Charles de Fitte"),
+            SAMPLE.copy(id = 700, status = GarageStatusEnum.CONSTRUCTOR),
+            SAMPLE.copy(id = 800, name = "Speedy Charles de Fitte"),
+            SAMPLE.copy(id = 900, status = GarageStatusEnum.CONSTRUCTOR),
+            SAMPLE.copy(id = 1000, name = "Speedy Charles de Fitte"),
+            SAMPLE.copy(id = 1100, status = GarageStatusEnum.CONSTRUCTOR)
         )
     }
 }
@@ -34,6 +45,22 @@ data class SelectableGarage(
 enum class GarageStatusEnum {
     INDEPENDENT,
     CONSTRUCTOR,
+}
+
+data class GarageStatus(
+    val title: String,
+    val color: Color
+) {
+    companion object {
+        val independant: GarageStatus = GarageStatus(
+            title = "Garage indépendant",
+            color = ColorAccent
+        )
+        val constructor: GarageStatus = GarageStatus(
+            title = "Garage constructeur",
+            color = ColorPrimary
+        )
+    }
 }
 
 data class Vehicle(
