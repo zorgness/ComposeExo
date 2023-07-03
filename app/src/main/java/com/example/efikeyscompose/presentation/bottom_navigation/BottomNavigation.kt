@@ -49,13 +49,15 @@ fun BottomNavigationScreen(
                         contentDescription = item.screenRoute,
                         modifier = Modifier.size(24.dp),
                         // TODO temporary color
-                        tint = item.color
-                        //tint= if(currentRoute == item.screenRoute) ColorAccent else Color.White
+                        //tint = item.color
+                        tint= if(currentRoute == item.screenRoute) ColorAccent else Color.White
                     )
 
                 },
                 selected = currentRoute == item.screenRoute,
-                onClick = { /*TODO*/ }
+                onClick = {
+                    navController.navigate(item.screenRoute)
+                }
             )
 
         }

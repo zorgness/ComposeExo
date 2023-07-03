@@ -10,6 +10,6 @@ sealed class BottomNavItem(
     var color: Color
 ) {
     object Home : BottomNavItem(R.drawable.home_icon, Screen.Home.route, ColorAccent)
-    object Keys: BottomNavItem(R.drawable.key_icon, Screen.Home.route, Color.White)
+    object Keys: BottomNavItem(R.drawable.key_icon, Screen.Keys.route, Color.White)
     object Profile: BottomNavItem(R.drawable.userfeedback_icon, Screen.Home.route, Color.White)
 }
