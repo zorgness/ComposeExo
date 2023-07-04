@@ -18,7 +18,7 @@ import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 import com.example.efikeyscompose.utils.BottomNavItem
 
 @Composable
-fun BottomNavigationScreen(
+fun BottomNavigationComponent(
     navController: NavHostController
 ) {
 

@@ -2,6 +2,7 @@ package com.example.efikeyscompose.presentation.add_vehicle
 
 import CustomTextField
 import CustomTextFieldKilometers
+import HeaderCommon
 import android.content.Context
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -93,32 +94,10 @@ fun AddVehicleContent(
         modifier = Modifier.fillMaxSize()
     ) {
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    horizontal = 20.dp,
-                    vertical = 30.dp
-                ),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+        HeaderCommon(
+            title = context.getString(R.string.add_vehicle)
         ) {
-
-            Text(
-                text = context.getString(R.string.add_vehicle),
-                style = MaterialTheme.typography.h2,
-                color = ColorPrimary
-            )
-
-            Image(
-                painterResource(
-                    id = R.drawable.modalcross_icon
-                ),
-                modifier = Modifier
-                    .size(28.dp)
-                    .clickable { handleNavBack() },
-                contentDescription = null,
-            )
+            handleNavBack()
         }
 
         Column(

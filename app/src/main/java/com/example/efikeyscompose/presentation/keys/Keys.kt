@@ -1,31 +1,22 @@
 package com.example.efikeyscompose.presentation.keys
 
-import BottomNavigationScreen
-import HeaderKeys
+import BottomNavigationComponent
+import HeaderSimple
+import KeyVehicleItem
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Looks
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.outlined.Looks
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.efikeyscompose.data.dto.Garage
+import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.keys.components.FilterButton
 import com.example.efikeyscompose.presentation.keys.components.SearchKeys
-import com.example.efikeyscompose.presentation.site.SiteContent
-import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
-import com.example.efikeyscompose.presentation.ui.theme.SearchBarColor
 import com.example.efikeyscompose.utils.FilterBtn
 
 @Composable
@@ -41,17 +32,26 @@ fun KeyScreen(
         FilterBtn(4,"Utilisées")
     )
 
+    val vehicleList = Vehicle.SAMPLES
+
+
     val searchStr by viewModel.searchStateFlow.collectAsState()
     KeyContent(
-        //navController = navController,
-        filterList = filterList
+        navController = navController,
+        searchStr = searchStr,
+        filterList = filterList,
+        vehicleList = vehicleList,
+        handleValue = {viewModel.updateSearchStr(it)}
     )
 }
 
 @Composable
 fun KeyContent(
-    //navController: NavHostController,
-    filterList: List<FilterBtn>
+    navController: NavHostController,
+    searchStr: String,
+    filterList: List<FilterBtn>,
+    vehicleList: List<Vehicle>,
+    handleValue: (String) -> Unit
 ) {
 
     Box(
@@ -60,14 +60,21 @@ fun KeyContent(
         Column(
             modifier = Modifier.align(Alignment.TopCenter)
         ) {
-            HeaderKeys()
-            SearchKeys()
+            HeaderSimple(
+                title = "Les clés"
+            )
+            SearchKeys(
+                value = searchStr,
+                handleValue = handleValue
+            )
 
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(12.dp),
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                contentPadding = PaddingValues(12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                filterList.forEach {filterBtn ->
+                items(filterList) {filterBtn ->
                     FilterButton(
                         filterBtn = filterBtn,
                         isSelected = filterBtn.id == 1,
@@ -75,16 +82,21 @@ fun KeyContent(
                     )
                 }
             }
+
+            LazyColumn(
+                modifier = Modifier.padding(bottom = 75.dp)
+            ) {
+                items(vehicleList) {vehicle->
+                    KeyVehicleItem(vehicle = vehicle)
+                }
+            }
         }
-
-
-
 
         Box(
             modifier = Modifier
             .align(Alignment.BottomCenter)
         ) {
-            //BottomNavigationScreen(navController = navController )
+            BottomNavigationComponent(navController = navController )
         }
     }
 }
@@ -92,7 +104,7 @@ fun KeyContent(
 
 
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     EfiKeysComposeTheme {
@@ -103,9 +115,10 @@ fun DefaultPreview() {
             FilterBtn(4,"Utilisées")
         )
         KeyContent(
-            filterList = filterList
+            filterList = filterList,
+            vehicleList = Vehicle.SAMPLES
         )
 
     }
-}
+}*/
 

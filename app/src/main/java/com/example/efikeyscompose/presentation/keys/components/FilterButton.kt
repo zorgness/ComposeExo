@@ -1,15 +1,15 @@
 package com.example.efikeyscompose.presentation.keys.components
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
 import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 import com.example.efikeyscompose.utils.FilterBtn
@@ -23,6 +23,7 @@ fun FilterButton(
 ){
 
     Button(
+        modifier = Modifier.padding(end= 4.dp),
         shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = if(isSelected) ColorAccent else Color.LightGray,

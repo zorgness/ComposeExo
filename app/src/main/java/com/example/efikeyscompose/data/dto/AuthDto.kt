@@ -35,4 +35,12 @@ data class UserDto(
     val email: String,
     @Json(name = "username")
     val username: String,
-)
+) {
+    companion object {
+        val SAMPLE: UserDto = UserDto(
+            1,
+            "joe@example.com","" +
+                    "joe_speedy_78"
+        )
+    }
+}

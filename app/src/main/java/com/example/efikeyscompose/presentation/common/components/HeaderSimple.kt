@@ -8,7 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HeaderKeys(
+fun HeaderSimple(
+    title: String,
     modifier: Modifier = Modifier
 ) {
 
@@ -27,7 +28,7 @@ fun HeaderKeys(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Les clés",
+                text = title,
                 style = MaterialTheme.typography.h2
             )
         }

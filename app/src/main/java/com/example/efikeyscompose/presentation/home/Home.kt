@@ -1,6 +1,6 @@
 package com.example.efikeyscompose.presentation.home
 
-import BottomNavigationScreen
+import BottomNavigationComponent
 import HomeHeader
 import android.content.Context
 import androidx.compose.foundation.Image
@@ -32,13 +32,13 @@ import com.example.efikeyscompose.R
 import com.example.efikeyscompose.data.dto.Garage
 import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.home.components.HomeVehicleItem
+import com.example.efikeyscompose.presentation.profile.ProfileViewModel
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
 import com.example.efikeyscompose.utils.Screen
 
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    viewModel: MainViewModel
 ) {
 
     val context = LocalContext.current
@@ -51,15 +51,7 @@ fun HomeScreen(
         Vehicle.SAMPLE,
     )
 
-    LaunchedEffect(true) {
-        viewModel.goToLoginSharedFlow.collect {
-            navController.navigate(it.route) {
-                popUpTo(Screen.Home.route) {
-                    inclusive = true
-                }
-            }
-        }
-    }
+
 
     HomeContent(
         context = context,
@@ -72,9 +64,7 @@ fun HomeScreen(
         goToAddVehicle = {
             navController.navigate(Screen.AddVehicle.route)
         }
-    ) {
-        viewModel.logout()
-    }
+    )
 }
 
 @Composable
@@ -85,8 +75,6 @@ fun HomeContent(
     navController: NavHostController? = null,
     goToSite: () -> Unit,
     goToAddVehicle: () -> Unit,
-    handleLogout: () -> Unit,
-
 ) {
 
     Box(
@@ -99,7 +87,7 @@ fun HomeContent(
                 .align(Alignment.TopCenter)
         ) {
             HomeHeader(
-                onLogoutIconClicked = { handleLogout() }
+                onLogoutIconClicked = {}
             )
 
             Box() {
@@ -212,7 +200,7 @@ fun HomeContent(
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
             ) {
-                BottomNavigationScreen(
+                BottomNavigationComponent(
                     navController = navController
                 )
             }

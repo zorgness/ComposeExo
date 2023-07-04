@@ -13,12 +13,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.efikeyscompose.presentation.ui.theme.SearchBarColor
 
 @Composable
-fun SearchKeys () {
+fun SearchKeys (
+    value: String,
+    handleValue: (String) -> Unit
+) {
     TextField(
-        value = "",
+        value = value,
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp),
@@ -34,7 +38,8 @@ fun SearchKeys () {
         },
         placeholder = {
             Text(
-                text= "Entrez l'une des caractéristiques du..."
+                text= "Entrez l'une des caractéristiques du...",
+                fontSize = 12.sp
             )
         },
         colors = TextFieldDefaults.textFieldColors(
@@ -42,7 +47,7 @@ fun SearchKeys () {
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent
         ),
-        onValueChange = {}
+        onValueChange = { handleValue(it) }
     )
 
 

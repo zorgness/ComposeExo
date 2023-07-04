@@ -19,10 +19,11 @@ import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleScreen
 import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleViewModel
 import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
 import com.example.efikeyscompose.presentation.home.HomeScreen
-import com.example.efikeyscompose.presentation.home.MainViewModel
+import com.example.efikeyscompose.presentation.profile.ProfileViewModel
 import com.example.efikeyscompose.presentation.auth.register.RegisterViewModel
 import com.example.efikeyscompose.presentation.keys.KeyScreen
 import com.example.efikeyscompose.presentation.keys.KeyViewModel
+import com.example.efikeyscompose.presentation.profile.ProfileScreen
 import com.example.efikeyscompose.presentation.site.SiteScreen
 import com.example.efikeyscompose.presentation.site.SiteViewModel
 import com.example.efikeyscompose.presentation.splash.SplashScreen
@@ -66,8 +67,8 @@ fun AppNavigation() {
             LoginScreen(navController, loginViewModel)
         }
         composable(Screen.Home.route) {
-            val mainViewModel: MainViewModel = hiltViewModel()
-            HomeScreen(navController, mainViewModel)
+
+            HomeScreen(navController)
         }
 
         composable(Screen.AddVehicle.route) {
@@ -83,6 +84,11 @@ fun AppNavigation() {
         composable(Screen.Keys.route) {
             val keyViewModel: KeyViewModel = hiltViewModel()
             KeyScreen(navController, keyViewModel)
+        }
+
+        composable(Screen.Profile.route) {
+            val profileViewModel: ProfileViewModel = hiltViewModel()
+            ProfileScreen(navController, profileViewModel)
         }
     }
 }

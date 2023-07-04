@@ -1,4 +1,4 @@
-package com.example.efikeyscompose.presentation.home
+package com.example.efikeyscompose.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class ProfileViewModel @Inject constructor(
     private val sharedPref: MySharedPref
 ): ViewModel() {
 
