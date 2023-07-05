@@ -48,4 +48,8 @@
     <string name="site_activity">Sites d\'activités</string>
     <string name="select_site_activity">Sélectionner votre site d\'activité principal</string>
 
+    <!--   MODAL-->
+    <string name="frame_number">Numéro de châssis</string>
+    <string name="user_info">Remarques clients</string>
+
 </resources>

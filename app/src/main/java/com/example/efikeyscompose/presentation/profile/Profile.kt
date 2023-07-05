@@ -93,7 +93,6 @@ fun ProfileContent(
                     .height(240.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-
                 CustomTextField(placeholder = "email", value = account.email, handleValue = {})
                 CustomTextField(placeholder = "username", value = account.username, handleValue = {})
                 CustomTextField(placeholder = "mot de passe", value = "123456", isPassword = true, handleValue = {})
@@ -124,6 +123,7 @@ fun ProfileContent(
 }
 
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -136,4 +136,4 @@ fun DefaultPreview() {
         )
         
     }
-}
+}*/

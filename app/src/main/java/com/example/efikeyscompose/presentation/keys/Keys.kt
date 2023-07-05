@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -18,6 +19,7 @@ import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.keys.components.FilterButton
 import com.example.efikeyscompose.presentation.keys.components.SearchKeys
 import com.example.efikeyscompose.utils.FilterBtn
+import com.example.efikeyscompose.utils.Screen
 
 @Composable
 fun KeyScreen(
@@ -33,15 +35,17 @@ fun KeyScreen(
     )
 
     val vehicleList = Vehicle.SAMPLES
-
-
     val searchStr by viewModel.searchStateFlow.collectAsState()
+
     KeyContent(
         navController = navController,
         searchStr = searchStr,
         filterList = filterList,
         vehicleList = vehicleList,
-        handleValue = {viewModel.updateSearchStr(it)}
+        handleValue = {viewModel.updateSearchStr(it)},
+        handleVehicleClicked = { index ->
+            navController.navigate(Screen.Modal.route + "/$index")
+        }
     )
 }
 
@@ -51,7 +55,8 @@ fun KeyContent(
     searchStr: String,
     filterList: List<FilterBtn>,
     vehicleList: List<Vehicle>,
-    handleValue: (String) -> Unit
+    handleValue: (String) -> Unit,
+    handleVehicleClicked: (Int) -> Unit
 ) {
 
     Box(
@@ -86,8 +91,11 @@ fun KeyContent(
             LazyColumn(
                 modifier = Modifier.padding(bottom = 75.dp)
             ) {
-                items(vehicleList) {vehicle->
-                    KeyVehicleItem(vehicle = vehicle)
+                itemsIndexed(vehicleList) {index, vehicle->
+                    KeyVehicleItem(
+                        index = index,
+                        vehicle = vehicle
+                    ) { handleVehicleClicked(it) }
                 }
             }
         }

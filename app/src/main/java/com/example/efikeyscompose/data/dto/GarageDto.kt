@@ -78,7 +78,9 @@ data class Vehicle(
         val SAMPLE: Vehicle = Vehicle(
             "AB-123-CD",
             "Mini Cooper Essence",
-            listOf("https://www.automobile-magazine.fr/asset/cms/178540/config/127282/cooper.jpg"),
+            listOf("https://www.automobile-magazine.fr/asset/cms/178540/config/127282/cooper.jpg",
+                "https://www.largus.fr/images/images/2005-mini-one-cabriolet-01.jpg",
+            "https://agenceauto.com/upload/image/large/133023-20230330045521-6425a2d98e8d0IMG_20230329_175958.jpg"),
             4240,
             "Pierre Dupont",
             "06 22 12 09 14",

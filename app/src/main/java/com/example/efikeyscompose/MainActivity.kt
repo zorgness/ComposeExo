@@ -12,9 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavArgument
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleScreen
 import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleViewModel
 import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
@@ -23,6 +26,8 @@ import com.example.efikeyscompose.presentation.profile.ProfileViewModel
 import com.example.efikeyscompose.presentation.auth.register.RegisterViewModel
 import com.example.efikeyscompose.presentation.keys.KeyScreen
 import com.example.efikeyscompose.presentation.keys.KeyViewModel
+import com.example.efikeyscompose.presentation.modal.ModalScreen
+import com.example.efikeyscompose.presentation.modal.ModalViewModel
 import com.example.efikeyscompose.presentation.profile.ProfileScreen
 import com.example.efikeyscompose.presentation.site.SiteScreen
 import com.example.efikeyscompose.presentation.site.SiteViewModel
@@ -89,6 +94,15 @@ fun AppNavigation() {
         composable(Screen.Profile.route) {
             val profileViewModel: ProfileViewModel = hiltViewModel()
             ProfileScreen(navController, profileViewModel)
+        }
+        composable(Screen.Modal.route + "/{vehicleId}",
+        arguments = listOf(
+            navArgument("vehicleId") {
+            type = NavType.IntType
+        })) {
+            val modalViewModel: ModalViewModel = hiltViewModel()
+            val vehicleId = it.arguments?.getInt("vehicleId") ?: 0
+            ModalScreen(navController, vehicleId, modalViewModel)
         }
     }
 }
