@@ -1,6 +1,5 @@
 package com.example.efikeyscompose.presentation.modal.components
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,7 +39,8 @@ fun Carousel(
             DotsIndicator(
                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp),
                 totalDots = itemsCount,
-                selectedIndex = if(isDragged) pagerState.currentPage else pagerState.targetPage,
+                selectedIndex = if(isDragged) pagerState.currentPage
+                                else pagerState.targetPage,
                 dotSize = 10.dp
             )
         }

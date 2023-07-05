@@ -93,18 +93,17 @@ fun ModalContent(
 
             //INFO
             Column(
-                modifier = Modifier
-                    .padding(16.dp)
+                modifier = Modifier.padding(20.dp)
+
             ) {
                 Card(
                     elevation = 8.dp,
                     modifier = Modifier
-                        .padding(10.dp)
+                        .padding(bottom = 20.dp)
                         .height(60.dp)
-
                 ) {
                     ModalInfoRow(
-                        modifier = Modifier.padding(vertical = 10.dp),
+                        modifier = Modifier,
                         resId = R.drawable.profil_icon,
                         topInfo = vehicle.contactName ,
                         bottomInfo = vehicle.contactPhone
@@ -113,12 +112,10 @@ fun ModalContent(
                 Card(
                     elevation = 8.dp,
                     modifier = Modifier
-                        .padding(10.dp)
                         .height(180.dp)
                 ) {
                     Column(
-                        modifier = Modifier
-                            .padding(10.dp),
+                        modifier = Modifier.padding(vertical = 10.dp),
                         verticalArrangement = Arrangement.SpaceBetween
                     ) {
 
