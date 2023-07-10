@@ -20,18 +20,22 @@ data class Garage(
             "https://www.auto-infos.fr/mediatheque/4/4/8/000089844_600x400_c.jpg"
         )
 
+        private val SAMPLE2: Garage = Garage(
+            200,
+            "Norauto Venelles",
+            GarageStatusEnum.INDEPENDENT,
+            "https://www.norauto-franchise.com/wp-content/uploads/2018/06/Centre-Norauto-Villeneuve-d-Ascq-1024x768.jpg"
+        )
+
         val SAMPLES: List<Garage> = listOf(
             SAMPLE,
             SAMPLE.copy(id = 200, name = "Speedy Charles de Fitte"),
-            SAMPLE.copy(id = 300, status = GarageStatusEnum.CONSTRUCTOR),
+            SAMPLE2.copy(id = 300, status = GarageStatusEnum.CONSTRUCTOR),
             SAMPLE.copy(id = 400, name = "Speedy Charles de Fitte"),
             SAMPLE.copy(id = 500, status = GarageStatusEnum.CONSTRUCTOR),
             SAMPLE.copy(id = 600, name = "Speedy Charles de Fitte"),
-            SAMPLE.copy(id = 700, status = GarageStatusEnum.CONSTRUCTOR),
+            SAMPLE2.copy(id = 700, status = GarageStatusEnum.CONSTRUCTOR),
             SAMPLE.copy(id = 800, name = "Speedy Charles de Fitte"),
-            SAMPLE.copy(id = 900, status = GarageStatusEnum.CONSTRUCTOR),
-            SAMPLE.copy(id = 1000, name = "Speedy Charles de Fitte"),
-            SAMPLE.copy(id = 1100, status = GarageStatusEnum.CONSTRUCTOR)
         )
     }
 }
@@ -108,6 +112,7 @@ data class Vehicle(
             SAMPLE,
             SAMPLE2,
             SAMPLE.copy(
+                id = UUID.randomUUID().toString(),
                 keyStatus = KeyStatusEnum.COLLECTED,
                 collectedBy = "Eric G.",
                 boxStatus = BoxStatusEnum.USED

@@ -1,5 +1,6 @@
 package com.example.efikeyscompose.presentation.modal
 
+import EMPTY_STRING
 import InfoKeyCollected
 import ModalInfoRow
 import android.content.Context
@@ -43,7 +44,6 @@ fun ModalScreen(
     var isOpen by remember { mutableStateOf(false) }
 
     LaunchedEffect(true) {
-        //TEMPORARY
         viewModel.getVehicleById(vehicleId)
     }
 
@@ -162,12 +162,16 @@ fun ModalContent(
                         onClick = { setIsOpen() },
                     ) {
                         Text(
-                            text = if(isOpen) "Fermer le casier" else "Ouvrir le casier",
+                            text = if(isOpen) context.getString(R.string.close_inbox)
+                                   else context.getString(R.string.open_inbox),
                             fontWeight = FontWeight.SemiBold
                         )
                     }
 
-                    InfoKeyAvailable(isOpen = isOpen)
+                    InfoKeyAvailable(
+                        context = context,
+                        isOpen = isOpen
+                    )
 
                 }
                 KeyStatusEnum.COLLECTED -> {
@@ -186,12 +190,12 @@ fun ModalContent(
                         onClick = { },
                     ) {
                         Text(
-                            text = "Demander la clé",
+                            text = context.getString(R.string.ask_key),
                             fontWeight = FontWeight.SemiBold
                         )
                     }
 
-                    InfoKeyCollected(vehicle.collectedBy ?: "")
+                    InfoKeyCollected(vehicle.collectedBy ?: EMPTY_STRING)
                 }
             }
 
@@ -203,7 +207,6 @@ fun ModalContent(
 @Composable
 fun DefaultPreview() {
     EfiKeysComposeTheme {
-
         ModalContent(
             context = LocalContext.current,
             isOpen = true,
@@ -211,8 +214,5 @@ fun DefaultPreview() {
             setIsOpen = {},
             handleNavBack = {}
         )
-
-
-
     }
 }

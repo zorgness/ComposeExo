@@ -26,7 +26,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -35,16 +34,17 @@ import com.example.efikeyscompose.data.dto.Garage
 import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.home.components.HomeVehicleItem
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
+import com.example.efikeyscompose.shared_viewmodel.HomeAndSiteViewModel
 import com.example.efikeyscompose.utils.Screen
 
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    viewModel: HomeViewModel
+    viewModel: HomeAndSiteViewModel
 ) {
 
     val context = LocalContext.current
-    val garage = Garage.SAMPLE
+    val garage by viewModel.selectedGarageStateFlow.collectAsState()
     val vehicleList by viewModel.vehicleListStateFlow.collectAsState()
 
     HomeContent(

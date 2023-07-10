@@ -1,5 +1,6 @@
 package com.example.efikeyscompose.presentation.modal.components
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -19,7 +20,9 @@ import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 
 @Composable
 fun InfoKeyAvailable(
+    context: Context,
     isOpen: Boolean = false,
+    inBoxId: Int? = 0,
 ) {
 
     Row(
@@ -46,16 +49,18 @@ fun InfoKeyAvailable(
             verticalArrangement = Arrangement.Center
         ){
             Text(
-                text = if(isOpen) "Le casier n°X est ouvert" else "Clé disponible" ,
+                text = if(isOpen) String.format(context.getString(R.string.inbox_number_open), inBoxId)
+                       else context.getString(R.string.key_is_available) ,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White
             )
-            Text(
-                text = if(isOpen) "Vous pouvez récupérer la clé" else "" ,
-                color = Color.White,
-                style = MaterialTheme.typography.body2
-            )
-
+            if(isOpen) {
+                Text(
+                    text = context.getString(R.string.can_take_key),
+                    color = Color.White,
+                    style = MaterialTheme.typography.body2
+                )
+            }
         }
 
     }

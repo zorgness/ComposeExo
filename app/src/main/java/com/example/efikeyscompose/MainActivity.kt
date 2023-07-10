@@ -23,7 +23,7 @@ import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
 import com.example.efikeyscompose.presentation.home.HomeScreen
 import com.example.efikeyscompose.presentation.profile.ProfileViewModel
 import com.example.efikeyscompose.presentation.auth.register.RegisterViewModel
-import com.example.efikeyscompose.presentation.home.HomeViewModel
+import com.example.efikeyscompose.shared_viewmodel.HomeAndSiteViewModel
 import com.example.efikeyscompose.presentation.keys.KeyScreen
 import com.example.efikeyscompose.presentation.keys.KeyViewModel
 import com.example.efikeyscompose.presentation.modal.ModalScreen
@@ -58,6 +58,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val homeSiteViewModel: HomeAndSiteViewModel = hiltViewModel()
     NavHost(navController = navController, startDestination = Screen.Splash.route) {
         composable(Screen.Splash.route) {
             val splashViewModel: SplashViewModel = hiltViewModel()
@@ -72,8 +73,7 @@ fun AppNavigation() {
             LoginScreen(navController, loginViewModel)
         }
         composable(Screen.Home.route) {
-            val homeViewModel: HomeViewModel = hiltViewModel()
-            HomeScreen(navController, homeViewModel)
+            HomeScreen(navController, homeSiteViewModel)
         }
 
         composable(Screen.VehicleNew.route) {
@@ -82,8 +82,7 @@ fun AppNavigation() {
         }
 
         composable(Screen.Site.route) {
-            val siteViewModel: SiteViewModel = hiltViewModel()
-            SiteScreen(navController, siteViewModel)
+            SiteScreen(navController, homeSiteViewModel)
         }
 
         composable(Screen.Keys.route) {

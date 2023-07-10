@@ -6,29 +6,22 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.efikeyscompose.R
 import com.example.efikeyscompose.data.dto.Garage
 import com.example.efikeyscompose.data.dto.GarageStatus
 import com.example.efikeyscompose.data.dto.GarageStatusEnum
-import com.example.efikeyscompose.data.dto.SelectableGarage
-import com.example.efikeyscompose.presentation.site.SiteScreen
-import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
-import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
-import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
 
 @Composable
 fun SiteItem (
     garage: Garage,
-    selectedId: Long,
-    handleSelected: (Long) -> Unit
+    selectedGarage: Garage,
+    handleSelected: (Garage) -> Unit
 ) {
 
     val (status, color) = getGarageStatus(garage.status)
@@ -47,9 +40,9 @@ fun SiteItem (
         ) {
 
             RadioButton(
-                selected = selectedId == garage.id,
+                selected = selectedGarage == garage,
                 onClick = {
-                    handleSelected(garage.id)
+                    handleSelected(garage)
                 },
                 modifier = Modifier.weight(0.2f)
             )

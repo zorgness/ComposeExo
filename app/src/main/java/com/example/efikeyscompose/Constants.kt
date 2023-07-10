@@ -4,6 +4,8 @@ const val SHAREDPREF_SESSION_USER_ID = "session user id"
 
 const val USER_TOKEN = "token"
 
+const val EMPTY_STRING = ""
+
 const val HTTP_200 = 200
 const val HTTP_201 = 201
 const val HTTP_204 = 204

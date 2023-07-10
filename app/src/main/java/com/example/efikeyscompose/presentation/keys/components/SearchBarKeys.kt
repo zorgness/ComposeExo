@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.example.efikeyscompose.presentation.ui.theme.SearchBarColor
 
 @Composable
-fun SearchKeys (
+fun SearchBarKeys (
     value: String,
     handleValue: (String) -> Unit
 ) {

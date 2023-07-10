@@ -18,7 +18,7 @@ import com.example.efikeyscompose.utils.FilterBtn
 fun FilterButton(
     filterBtn: FilterBtn,
     isSelected: Boolean = false,
-    handleClicked: (Int) -> Unit
+    handleClicked: (FilterBtn) -> Unit
 
 ){
 
@@ -29,7 +29,7 @@ fun FilterButton(
             backgroundColor = if(isSelected) ColorAccent else Color.LightGray,
             contentColor = if(isSelected) ColorPrimary else Color.DarkGray
         ),
-        onClick = {handleClicked(filterBtn.id) }
+        onClick = {handleClicked(filterBtn) }
     ) {
         Text(
             text= filterBtn.name,

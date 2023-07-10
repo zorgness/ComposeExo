@@ -24,25 +24,26 @@ import com.example.efikeyscompose.R
 import com.example.efikeyscompose.data.dto.Garage
 import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
+import com.example.efikeyscompose.shared_viewmodel.HomeAndSiteViewModel
 import com.example.efikeyscompose.utils.Screen
 
 @Composable
 fun SiteScreen(
     navController: NavHostController,
-    viewModel: SiteViewModel
+    viewModel: HomeAndSiteViewModel
 ) {
     val context = LocalContext.current
 
-    val selectedId by viewModel.selectedStateFlow.collectAsState()
+    val selectedGarage by viewModel.selectedGarageStateFlow.collectAsState()
 
     SiteContent(
         context = context,
         siteList = Garage.SAMPLES,
-        selectedId = selectedId,
+        selectedGarage = selectedGarage,
         handleClick = {
             navController.navigate(Screen.Home.route)
         },
-        handleSelected = { viewModel.updateSelected(it) }
+        handleSelected = { viewModel.updateSelectedGarage(it) }
     )
 }
 
@@ -50,9 +51,9 @@ fun SiteScreen(
 fun SiteContent(
     context: Context,
     siteList: List<Garage>,
-    selectedId: Long,
+    selectedGarage: Garage,
     handleClick:() -> Unit,
-    handleSelected:(Long) -> Unit
+    handleSelected:(Garage) -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -83,7 +84,7 @@ fun SiteContent(
                 items(siteList) {site ->
                     SiteItem(
                         site,
-                        selectedId = selectedId
+                        selectedGarage = selectedGarage
                     )
                     { handleSelected(it) }
                 }
@@ -122,7 +123,7 @@ fun DefaultPreview() {
         SiteContent(
             context = LocalContext.current,
             siteList = Garage.SAMPLES,
-            selectedId = 0L,
+            selectedGarage = Garage.SAMPLE,
             handleClick = {},
             handleSelected = {}
         )

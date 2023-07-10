@@ -13,14 +13,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.keys.components.FilterButton
-import com.example.efikeyscompose.presentation.keys.components.SearchKeys
+import com.example.efikeyscompose.presentation.keys.components.SearchBarKeys
 import com.example.efikeyscompose.utils.FilterBtn
 import com.example.efikeyscompose.utils.Screen
-import java.util.UUID
+import com.example.efikeyscompose.R
+import com.example.efikeyscompose.data.dto.BoxStatusEnum
 
 @Composable
 fun KeyScreen(
@@ -28,11 +30,11 @@ fun KeyScreen(
     viewModel: KeyViewModel
 ) {
 
-    val filterList = listOf(
-        FilterBtn(1,"Toutes"),
-        FilterBtn(2,"Inbox Dock"),
-        FilterBtn(3,"Inbox"),
-        FilterBtn(4,"Utilisées")
+    val filterBtnList = listOf(
+        FilterBtn(1, "Toutes"),
+        FilterBtn(2, "Inbox Dock", BoxStatusEnum.INBOX_DOCK),
+        FilterBtn(3, "Inbox", BoxStatusEnum.INBOX),
+        FilterBtn(4, "Utilisées", BoxStatusEnum.USED)
     )
 
     val vehicleList by viewModel.vehicleListStateFlow.collectAsState()
@@ -41,12 +43,13 @@ fun KeyScreen(
     KeyContent(
         navController = navController,
         searchStr = searchStr,
-        filterList = filterList,
+        filterBtnList = filterBtnList,
         vehicleList = vehicleList,
         handleValue = { viewModel.updateSearchStr(it) },
         handleVehicleClicked = { vehicleId ->
             navController.navigate(Screen.Modal.route + "/$vehicleId")
-        }
+        },
+        handleFilterBtnClicked = {}
     )
 }
 
@@ -54,10 +57,11 @@ fun KeyScreen(
 fun KeyContent(
     navController: NavHostController,
     searchStr: String,
-    filterList: List<FilterBtn>,
+    filterBtnList: List<FilterBtn>,
     vehicleList: List<Vehicle>,
     handleValue: (String) -> Unit,
-    handleVehicleClicked: (String) -> Unit
+    handleVehicleClicked: (String) -> Unit,
+    handleFilterBtnClicked: (FilterBtn) -> Unit
 ) {
 
     Box(
@@ -67,9 +71,9 @@ fun KeyContent(
             modifier = Modifier.align(Alignment.TopCenter)
         ) {
             HeaderSimple(
-                title = "Les clés"
+                title = LocalContext.current.getString(R.string.keys)
             )
-            SearchKeys(
+            SearchBarKeys(
                 value = searchStr,
                 handleValue = handleValue
             )
@@ -80,19 +84,20 @@ fun KeyContent(
                 contentPadding = PaddingValues(12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                items(filterList) {filterBtn ->
+                items(filterBtnList) { filterBtn ->
                     FilterButton(
                         filterBtn = filterBtn,
-                        isSelected = filterBtn.id == 1,
-                        handleClicked = {}
-                    )
+                        isSelected = filterBtn.id == 1
+                    ) {
+                        handleFilterBtnClicked(filterBtn)
+                    }
                 }
             }
 
             LazyColumn(
                 modifier = Modifier.padding(bottom = 75.dp)
             ) {
-                itemsIndexed(vehicleList) {index, vehicle->
+                itemsIndexed(vehicleList) { index, vehicle ->
                     KeyVehicleItem(
                         index = index,
                         vehicle = vehicle
@@ -103,31 +108,10 @@ fun KeyContent(
 
         Box(
             modifier = Modifier
-            .align(Alignment.BottomCenter)
+                .align(Alignment.BottomCenter)
         ) {
-            BottomNavigationComponent(navController = navController )
+            BottomNavigationComponent(navController = navController)
         }
     }
 }
-
-
-
-
-/*@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    EfiKeysComposeTheme {
-        val filterList = listOf(
-            FilterBtn(1,"Toutes"),
-            FilterBtn(2,"Inbox Dock"),
-            FilterBtn(3,"Inbox"),
-            FilterBtn(4,"Utilisées")
-        )
-        KeyContent(
-            filterList = filterList,
-            vehicleList = Vehicle.SAMPLES
-        )
-
-    }
-}*/
 

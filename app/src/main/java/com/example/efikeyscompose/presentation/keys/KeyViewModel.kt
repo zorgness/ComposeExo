@@ -1,7 +1,9 @@
 package com.example.efikeyscompose.presentation.keys
 
 import androidx.lifecycle.ViewModel
+import com.example.efikeyscompose.data.dto.BoxStatusEnum
 import com.example.efikeyscompose.data.dto.Vehicle
+import com.example.efikeyscompose.utils.FilterBtn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,6 +13,13 @@ import javax.inject.Inject
 class KeyViewModel @Inject constructor(
 
 ) : ViewModel() {
+
+    val filterBtnList = listOf(
+        FilterBtn(1,"Toutes"),
+        FilterBtn(2,"Inbox Dock", BoxStatusEnum.INBOX_DOCK),
+        FilterBtn(3,"Inbox", BoxStatusEnum.INBOX),
+        FilterBtn(4,"Utilisées", BoxStatusEnum.USED)
+    )
 
     private val _searchStateFlow = MutableStateFlow("")
     val searchStateFlow = _searchStateFlow.asStateFlow()

@@ -48,8 +48,17 @@
     <string name="site_activity">Sites d\'activités</string>
     <string name="select_site_activity">Sélectionner votre site d\'activité principal</string>
 
+    <!-- Keys-->
+    <string name="keys">Les clés</string>
+
     <!--   MODAL-->
     <string name="frame_number">Numéro de châssis</string>
     <string name="user_info">Remarques clients</string>
+    <string name="key_is_available">Clé disponible</string>
+    <string name="can_take_key">Vous pouvez récupérer la clé</string>
+    <string name="inbox_number_open">Le casier n°%1$d est ouvert</string>
+    <string name="open_inbox">Ouvrir le casier</string>
+    <string name="close_inbox">Fermer le casier</string>
+    <string name="ask_key">Demander la clé</string>
 
 </resources>
