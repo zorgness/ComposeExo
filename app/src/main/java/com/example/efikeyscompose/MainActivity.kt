@@ -1,5 +1,6 @@
 package com.example.efikeyscompose
 
+import EMPTY_STRING
 import LoginScreen
 import com.example.efikeyscompose.presentation.auth.register.RegisterScreen
 import android.os.Bundle
@@ -58,7 +59,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    val homeSiteViewModel: HomeAndSiteViewModel = hiltViewModel()
+    val homeAndSiteViewModel: HomeAndSiteViewModel = hiltViewModel()
     NavHost(navController = navController, startDestination = Screen.Splash.route) {
         composable(Screen.Splash.route) {
             val splashViewModel: SplashViewModel = hiltViewModel()
@@ -73,7 +74,7 @@ fun AppNavigation() {
             LoginScreen(navController, loginViewModel)
         }
         composable(Screen.Home.route) {
-            HomeScreen(navController, homeSiteViewModel)
+            HomeScreen(navController, homeAndSiteViewModel)
         }
 
         composable(Screen.VehicleNew.route) {
@@ -82,7 +83,7 @@ fun AppNavigation() {
         }
 
         composable(Screen.Site.route) {
-            SiteScreen(navController, homeSiteViewModel)
+            SiteScreen(navController, homeAndSiteViewModel)
         }
 
         composable(Screen.Keys.route) {
@@ -101,7 +102,7 @@ fun AppNavigation() {
             type = NavType.StringType
         })) {
             val modalViewModel: ModalViewModel = hiltViewModel()
-            val vehicleId = it.arguments?.getString("vehicleId") ?: ""
+            val vehicleId = it.arguments?.getString("vehicleId") ?: EMPTY_STRING
             ModalScreen(navController, vehicleId, modalViewModel)
         }
     }

@@ -55,10 +55,9 @@ fun HomeScreen(
         goToSite = {
             navController.navigate(Screen.Site.route)
         },
-        goToAddVehicle = {
+        goToVehicleNew = {
             navController.navigate(Screen.VehicleNew.route)
-        }
-    )
+        })
 }
 
 @Composable
@@ -66,9 +65,9 @@ fun HomeContent(
     context: Context,
     garage: Garage,
     vehicleList: List<Vehicle>,
-    navController: NavHostController? = null,
+    navController: NavHostController,
     goToSite: () -> Unit,
-    goToAddVehicle: () -> Unit,
+    goToVehicleNew: () -> Unit,
 ) {
 
     Box(
@@ -80,11 +79,9 @@ fun HomeContent(
                 .fillMaxSize()
                 .align(Alignment.TopCenter)
         ) {
-            HomeHeader(
-                onLogoutIconClicked = {}
-            )
+            HomeHeader(onLogoutIconClicked = {})
 
-            Box() {
+            Box {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(garage.imageUrl)
@@ -98,7 +95,6 @@ fun HomeContent(
                     colorFilter = ColorFilter.tint(
                         color = Color.Black.copy(alpha = 0.3f),
                         blendMode = BlendMode.Darken
-
                     )
                 )
 
@@ -119,32 +115,26 @@ fun HomeContent(
                     .height(28.dp)
                     .clip(
                         shape = RoundedCornerShape(
-                            bottomStart = 20.dp,
-                            bottomEnd = 20.dp
+                            bottomStart = 20.dp, bottomEnd = 20.dp
                         )
                     )
                     .background(ColorAccent)
             ) {
-                Text(
-                    text = context.getString(R.string.change_site),
+                Text(text = context.getString(R.string.change_site),
                     color = Color.White,
                     style = MaterialTheme.typography.h4,
                     modifier = Modifier
                         .align(Alignment.Center)
                         .clickable {
                             goToSite()
-                        }
-                )
+                        })
 
             }
 
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 40.dp, vertical = 24.dp)
-                    .height(44.dp),
-                onClick = { goToAddVehicle() }
-            ) {
+            Button(modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp, vertical = 24.dp)
+                .height(44.dp), onClick = { goToVehicleNew() }) {
                 Text(
                     text = context.getString(R.string.add_vehicle_to_garage),
                     style = MaterialTheme.typography.h4
@@ -163,7 +153,7 @@ fun HomeContent(
                         .background(ColorAccent)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.key_icon) ,
+                        painter = painterResource(id = R.drawable.key_icon),
                         contentDescription = null,
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -181,49 +171,23 @@ fun HomeContent(
             LazyColumn(
                 modifier = Modifier.padding(bottom = 72.dp)
             ) {
-                items(vehicleList) {vehicle ->
+                items(vehicleList) { vehicle ->
                     HomeVehicleItem(vehicle)
-
                 }
             }
         }
 
-
-        if (navController != null) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter)
-            ) {
-                BottomNavigationComponent(
-                    navController = navController
-                )
-            }
-
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+        ) {
+            BottomNavigationComponent(
+                navController = navController
+            )
         }
-    }
 
+
+    }
 }
 
-
-
-/*@Preview(showBackground = true)
-@Composable
-fun com.example.efikeyscompose.presentation.add_vehicle.components.DefaultPreview() {
-    EfiKeysComposeTheme {
-        HomeContent(
-            context = LocalContext.current,
-            garage = Garage.SAMPLE,
-            vehicleList = listOf(
-                Vehicle.SAMPLE,
-                Vehicle.SAMPLE,
-                Vehicle.SAMPLE,
-                Vehicle.SAMPLE,
-                Vehicle.SAMPLE,
-            ),
-            navController = null
-        ) {
-
-        }
-    }
-}*/

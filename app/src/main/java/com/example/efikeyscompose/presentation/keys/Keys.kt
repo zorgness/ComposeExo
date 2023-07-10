@@ -39,17 +39,20 @@ fun KeyScreen(
 
     val vehicleList by viewModel.vehicleListStateFlow.collectAsState()
     val searchStr by viewModel.searchStateFlow.collectAsState()
+    val btnSelected by viewModel.btnSelectedStateFlow.collectAsState()
 
     KeyContent(
         navController = navController,
         searchStr = searchStr,
         filterBtnList = filterBtnList,
         vehicleList = vehicleList,
+        btnSelected = btnSelected,
         handleValue = { viewModel.updateSearchStr(it) },
         handleVehicleClicked = { vehicleId ->
             navController.navigate(Screen.Modal.route + "/$vehicleId")
         },
-        handleFilterBtnClicked = {}
+        handleFilterBtnClicked = { viewModel.updateBtnSelected(it)
+        }
     )
 }
 
@@ -59,6 +62,7 @@ fun KeyContent(
     searchStr: String,
     filterBtnList: List<FilterBtn>,
     vehicleList: List<Vehicle>,
+    btnSelected: FilterBtn,
     handleValue: (String) -> Unit,
     handleVehicleClicked: (String) -> Unit,
     handleFilterBtnClicked: (FilterBtn) -> Unit
@@ -87,7 +91,7 @@ fun KeyContent(
                 items(filterBtnList) { filterBtn ->
                     FilterButton(
                         filterBtn = filterBtn,
-                        isSelected = filterBtn.id == 1
+                        isSelected = filterBtn == btnSelected
                     ) {
                         handleFilterBtnClicked(filterBtn)
                     }
