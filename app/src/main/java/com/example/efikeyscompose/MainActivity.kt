@@ -23,6 +23,7 @@ import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
 import com.example.efikeyscompose.presentation.home.HomeScreen
 import com.example.efikeyscompose.presentation.profile.ProfileViewModel
 import com.example.efikeyscompose.presentation.auth.register.RegisterViewModel
+import com.example.efikeyscompose.presentation.home.HomeViewModel
 import com.example.efikeyscompose.presentation.keys.KeyScreen
 import com.example.efikeyscompose.presentation.keys.KeyViewModel
 import com.example.efikeyscompose.presentation.modal.ModalScreen
@@ -71,8 +72,8 @@ fun AppNavigation() {
             LoginScreen(navController, loginViewModel)
         }
         composable(Screen.Home.route) {
-
-            HomeScreen(navController)
+            val homeViewModel: HomeViewModel = hiltViewModel()
+            HomeScreen(navController, homeViewModel)
         }
 
         composable(Screen.VehicleNew.route) {

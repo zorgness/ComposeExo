@@ -14,6 +14,8 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +26,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -37,19 +40,12 @@ import com.example.efikeyscompose.utils.Screen
 @Composable
 fun HomeScreen(
     navController: NavHostController,
+    viewModel: HomeViewModel
 ) {
 
     val context = LocalContext.current
     val garage = Garage.SAMPLE
-    val vehicleList = listOf(
-        Vehicle.SAMPLE,
-        Vehicle.SAMPLE,
-        Vehicle.SAMPLE,
-        Vehicle.SAMPLE,
-        Vehicle.SAMPLE,
-    )
-
-
+    val vehicleList by viewModel.vehicleListStateFlow.collectAsState()
 
     HomeContent(
         context = context,
@@ -133,7 +129,8 @@ fun HomeContent(
                     text = context.getString(R.string.change_site),
                     color = Color.White,
                     style = MaterialTheme.typography.h4,
-                    modifier = Modifier.align(Alignment.Center)
+                    modifier = Modifier
+                        .align(Alignment.Center)
                         .clickable {
                             goToSite()
                         }
