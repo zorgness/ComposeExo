@@ -1,46 +1,38 @@
-package com.example.efikeyscompose.presentation.add_vehicle
+package com.example.efikeyscompose.presentation.vehicle_new
 
 import CustomTextField
 import CustomTextFieldKilometers
 import HeaderCommon
 import android.content.Context
-import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.text.isDigitsOnly
 import androidx.navigation.NavHostController
 import com.example.efikeyscompose.R
 import com.example.efikeyscompose.data.dto.AddVehicleItem
-import com.example.efikeyscompose.presentation.add_vehicle.components.CameraCardItem
-import com.example.efikeyscompose.presentation.add_vehicle.components.CarCardItem
-import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
+import com.example.efikeyscompose.presentation.vehicle_new.components.CameraCardItem
+import com.example.efikeyscompose.presentation.vehicle_new.components.CarCardItem
 import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
 
 @Composable
-fun AddVehicleScreen(
+fun VehicleNewScreen(
     navController: NavHostController,
-    viewModel: AddVehicleViewModel
+    viewModel: VehicleNewViewModel
 ) {
 
     val context = LocalContext.current
@@ -60,7 +52,7 @@ fun AddVehicleScreen(
     )
 
 
-    AddVehicleContent(
+    VehicleNewContent(
         context = context,
         license = license,
         kilometers = kilometers,
@@ -78,7 +70,7 @@ fun AddVehicleScreen(
 
 }
 @Composable
-fun AddVehicleContent(
+fun VehicleNewContent(
     context: Context,
     license: String,
     kilometers: Long,
@@ -185,7 +177,7 @@ fun AddVehicleContent(
 @Composable
 fun DefaultPreview() {
     EfiKeysComposeTheme {
-      AddVehicleContent(
+      VehicleNewContent(
           context = LocalContext.current,
           license = "",
           kilometers = 0,

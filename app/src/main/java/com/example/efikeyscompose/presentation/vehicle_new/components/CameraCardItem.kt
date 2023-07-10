@@ -1,4 +1,4 @@
-package com.example.efikeyscompose.presentation.add_vehicle.components
+package com.example.efikeyscompose.presentation.vehicle_new.components
 
 
 import androidx.compose.foundation.Image

@@ -14,7 +14,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,7 +31,6 @@ import com.example.efikeyscompose.R
 import com.example.efikeyscompose.data.dto.Garage
 import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.home.components.HomeVehicleItem
-import com.example.efikeyscompose.presentation.profile.ProfileViewModel
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
 import com.example.efikeyscompose.utils.Screen
 
@@ -62,7 +60,7 @@ fun HomeScreen(
             navController.navigate(Screen.Site.route)
         },
         goToAddVehicle = {
-            navController.navigate(Screen.AddVehicle.route)
+            navController.navigate(Screen.VehicleNew.route)
         }
     )
 }

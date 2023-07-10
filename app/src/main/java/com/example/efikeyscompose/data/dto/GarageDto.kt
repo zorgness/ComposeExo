@@ -89,8 +89,23 @@ data class Vehicle(
             BoxStatusEnum.INBOX,
         )
 
+        val SAMPLE2: Vehicle = Vehicle(
+            "GL-559-MM",
+            "Mercedes Classe A 4",
+            listOf("https://cdn.drivek.com/configurator-imgs/cars/fr/original/MERCEDES/A-CLASS/41348_HATCHBACK-5-DOORS/mercedes-benz-classe-a-hb-front-view.jpg",
+                "https://images.caradisiac.com/images/0/7/1/2/200712/S1-essai-video-mercedes-classe-a-restylee-2023-une-etoile-plus-brillante-745771.jpg",
+                "https://cdn.motor1.com/images/mgl/3WQGM6/s3/mercedes-benz-a-klasse-2023.jpg"),
+            12400,
+            "Martin Durand",
+            "06 72 83 09 19",
+            KeyStatusEnum.AVAILABLE,
+            null,
+            BoxStatusEnum.INBOX,
+        )
+
         val SAMPLES: List<Vehicle> = listOf(
             SAMPLE,
+            SAMPLE2,
             SAMPLE.copy(
                 keyStatus = KeyStatusEnum.COLLECTED,
                 collectedBy = "Eric G.",

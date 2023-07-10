@@ -1,4 +1,4 @@
-package com.example.efikeyscompose.presentation.add_vehicle.components
+package com.example.efikeyscompose.presentation.vehicle_new.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -25,7 +24,6 @@ import coil.request.ImageRequest
 import com.example.efikeyscompose.R
 import com.example.efikeyscompose.data.dto.AddVehicleItem
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
-import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
 
 
 @Composable

@@ -1,14 +1,12 @@
 package com.example.efikeyscompose.presentation.modal
 
+import InfoKeyCollected
 import ModalInfoRow
 import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,9 +19,13 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.efikeyscompose.R
+import com.example.efikeyscompose.data.dto.KeyStatusEnum
 import com.example.efikeyscompose.data.dto.Vehicle
 import com.example.efikeyscompose.presentation.modal.components.Carousel
+import com.example.efikeyscompose.presentation.modal.components.InfoKeyAvailable
 import com.example.efikeyscompose.presentation.modal.components.ModalHeader
+import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
+import com.example.efikeyscompose.presentation.ui.theme.ColorMainOrange
 import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -38,6 +40,8 @@ fun ModalScreen(
     val vehicle by viewModel.vehicleStateFlow.collectAsState()
     val context = LocalContext.current
 
+    var isOpen by remember { mutableStateOf(false) }
+
     LaunchedEffect(true) {
         //TEMPORARY
         viewModel.getVehicleByIndedx(vehicleId)
@@ -46,10 +50,10 @@ fun ModalScreen(
     ModalContent(
         context = context,
         vehicle = vehicle,
-        handleNavBack = { navController.popBackStack() }
+        isOpen = isOpen,
+        handleNavBack = { navController.popBackStack() },
+        setIsOpen = { isOpen = !isOpen }
     )
-
-
 }
 
 @OptIn(ExperimentalPagerApi::class)
@@ -57,7 +61,9 @@ fun ModalScreen(
 fun ModalContent(
     context: Context,
     vehicle: Vehicle,
-    handleNavBack:() -> Unit
+    isOpen: Boolean,
+    handleNavBack:() -> Unit,
+    setIsOpen: () -> Unit
 ) {
 
     Box(
@@ -70,7 +76,8 @@ fun ModalContent(
             // HEADER
             ModalHeader(
                 licencePlate = vehicle.licensePlate,
-                type = vehicle.type
+                type = vehicle.type,
+                isOpen = isOpen
             ) {
                 handleNavBack()
             }
@@ -138,43 +145,58 @@ fun ModalContent(
                 }
             }
 
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(64.dp)
-                    .padding(horizontal = 32.dp)
-                    .padding(bottom = 16.dp),
-                shape = RoundedCornerShape(8.dp),
-                onClick = { /*TODO*/ },
-            ) {
-                Text(
-                    text = "Ouvrir le casier",
-                    fontWeight = FontWeight.SemiBold
-              )
-            }
+            when(vehicle.keyStatus) {
+                KeyStatusEnum.AVAILABLE -> {
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(64.dp)
+                            .padding(horizontal = 32.dp)
+                            .padding(bottom = 16.dp),
+                        shape = RoundedCornerShape(8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = if(isOpen) ColorMainOrange else ColorAccent,
+                            contentColor = Color.White
+                        ),
 
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(72.dp)
-                    .padding(horizontal = 16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = ColorPrimary,
-                    contentColor = Color.White
-                ),
-                shape = RoundedCornerShape(8.dp),
-                onClick = { /*TODO*/ }
-            ) {
-                Text(
-                    text = "Clé disponible",
-                    fontWeight = FontWeight.SemiBold
-                )
+                        onClick = { setIsOpen() },
+                    ) {
+                        Text(
+                            text = if(isOpen) "Fermer le casier" else "Ouvrir le casier",
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+
+                    InfoKeyAvailable(isOpen = isOpen)
+
+                }
+                KeyStatusEnum.COLLECTED -> {
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(64.dp)
+                            .padding(horizontal = 32.dp)
+                            .padding(bottom = 16.dp),
+                        shape = RoundedCornerShape(8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor =  ColorMainOrange,
+                            contentColor = Color.White
+                        ),
+
+                        onClick = { },
+                    ) {
+                        Text(
+                            text = "Demander la clé",
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+
+                    InfoKeyCollected(vehicle.collectedBy ?: "")
+                }
             }
 
         }
-
     }
-
 }
 
 @Preview(showBackground = true)
@@ -184,10 +206,13 @@ fun DefaultPreview() {
 
         ModalContent(
             context = LocalContext.current,
-            vehicle = Vehicle.SAMPLE
-        ) {
+            isOpen = true,
+            vehicle = Vehicle.SAMPLE,
+            setIsOpen = {},
+            handleNavBack = {}
+        )
 
-        }
+
 
     }
 }

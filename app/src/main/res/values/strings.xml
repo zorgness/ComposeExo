@@ -40,7 +40,7 @@
    <!-- ADD VEHICLE-->
     <string name="lincense">Plaque d\'immatriculation</string>
     <string name="kilometers_vehicle">Kilométrage du véhicule (km)</string>
-    <string name="add_vehicle">Ajouter un véhicule</string>
+    <string name="add_vehicle"><b>Ajouter un véhicule</b></string>
     <string name="done">Terminer</string>
 
    <!-- SITE-->

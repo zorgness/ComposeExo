@@ -1,4 +1,4 @@
-package com.example.efikeyscompose.presentation.add_vehicle
+package com.example.efikeyscompose.presentation.vehicle_new
 
 import androidx.lifecycle.ViewModel
 import com.example.efikeyscompose.data.dto.AddVehicleItem
@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class AddVehicleViewModel @Inject constructor(
+class VehicleNewViewModel @Inject constructor(
 
 ) : ViewModel() {
 

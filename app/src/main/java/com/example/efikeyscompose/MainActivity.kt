@@ -12,14 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavArgument
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleScreen
-import com.example.efikeyscompose.presentation.add_vehicle.AddVehicleViewModel
+import com.example.efikeyscompose.presentation.vehicle_new.VehicleNewScreen
+import com.example.efikeyscompose.presentation.vehicle_new.VehicleNewViewModel
 import com.example.efikeyscompose.presentation.auth.login.LoginViewModel
 import com.example.efikeyscompose.presentation.home.HomeScreen
 import com.example.efikeyscompose.presentation.profile.ProfileViewModel
@@ -76,9 +75,9 @@ fun AppNavigation() {
             HomeScreen(navController)
         }
 
-        composable(Screen.AddVehicle.route) {
-            val addVehicleViewModel: AddVehicleViewModel = hiltViewModel()
-            AddVehicleScreen(navController, addVehicleViewModel)
+        composable(Screen.VehicleNew.route) {
+            val addVehicleViewModel: VehicleNewViewModel = hiltViewModel()
+            VehicleNewScreen(navController, addVehicleViewModel)
         }
 
         composable(Screen.Site.route) {
@@ -95,6 +94,7 @@ fun AppNavigation() {
             val profileViewModel: ProfileViewModel = hiltViewModel()
             ProfileScreen(navController, profileViewModel)
         }
+
         composable(Screen.Modal.route + "/{vehicleId}",
         arguments = listOf(
             navArgument("vehicleId") {
