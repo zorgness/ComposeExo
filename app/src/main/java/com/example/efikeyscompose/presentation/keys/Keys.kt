@@ -20,6 +20,7 @@ import com.example.efikeyscompose.presentation.keys.components.FilterButton
 import com.example.efikeyscompose.presentation.keys.components.SearchKeys
 import com.example.efikeyscompose.utils.FilterBtn
 import com.example.efikeyscompose.utils.Screen
+import java.util.UUID
 
 @Composable
 fun KeyScreen(
@@ -34,7 +35,7 @@ fun KeyScreen(
         FilterBtn(4,"Utilisées")
     )
 
-    val vehicleList = Vehicle.SAMPLES
+    val vehicleList by viewModel.vehicleListStateFlow.collectAsState()
     val searchStr by viewModel.searchStateFlow.collectAsState()
 
     KeyContent(
@@ -42,9 +43,9 @@ fun KeyScreen(
         searchStr = searchStr,
         filterList = filterList,
         vehicleList = vehicleList,
-        handleValue = {viewModel.updateSearchStr(it)},
-        handleVehicleClicked = { index ->
-            navController.navigate(Screen.Modal.route + "/$index")
+        handleValue = { viewModel.updateSearchStr(it) },
+        handleVehicleClicked = { vehicleId ->
+            navController.navigate(Screen.Modal.route + "/$vehicleId")
         }
     )
 }
@@ -56,7 +57,7 @@ fun KeyContent(
     filterList: List<FilterBtn>,
     vehicleList: List<Vehicle>,
     handleValue: (String) -> Unit,
-    handleVehicleClicked: (Int) -> Unit
+    handleVehicleClicked: (String) -> Unit
 ) {
 
     Box(
@@ -95,7 +96,7 @@ fun KeyContent(
                     KeyVehicleItem(
                         index = index,
                         vehicle = vehicle
-                    ) { handleVehicleClicked(it) }
+                    ) { handleVehicleClicked(vehicle.id) }
                 }
             }
         }

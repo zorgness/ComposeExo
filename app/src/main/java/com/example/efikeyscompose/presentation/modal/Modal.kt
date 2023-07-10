@@ -26,14 +26,14 @@ import com.example.efikeyscompose.presentation.modal.components.InfoKeyAvailable
 import com.example.efikeyscompose.presentation.modal.components.ModalHeader
 import com.example.efikeyscompose.presentation.ui.theme.ColorAccent
 import com.example.efikeyscompose.presentation.ui.theme.ColorMainOrange
-import com.example.efikeyscompose.presentation.ui.theme.ColorPrimary
 import com.example.efikeyscompose.presentation.ui.theme.EfiKeysComposeTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
+import java.util.*
 
 @Composable
 fun ModalScreen(
     navController: NavHostController,
-    vehicleId: Int,
+    vehicleId: String,
     viewModel: ModalViewModel
 
 ) {
@@ -44,7 +44,7 @@ fun ModalScreen(
 
     LaunchedEffect(true) {
         //TEMPORARY
-        viewModel.getVehicleByIndedx(vehicleId)
+        viewModel.getVehicleById(vehicleId)
     }
 
     ModalContent(

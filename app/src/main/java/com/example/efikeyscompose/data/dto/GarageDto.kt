@@ -73,6 +73,7 @@ data class Vehicle(
     val keyStatus: KeyStatusEnum,
     val collectedBy: String?,
     val boxStatus: BoxStatusEnum,
+    val id: String = UUID.randomUUID().toString(),
 ) {
     companion object {
         val SAMPLE: Vehicle = Vehicle(
@@ -89,7 +90,7 @@ data class Vehicle(
             BoxStatusEnum.INBOX,
         )
 
-        val SAMPLE2: Vehicle = Vehicle(
+        private val SAMPLE2: Vehicle = Vehicle(
             "GL-559-MM",
             "Mercedes Classe A 4",
             listOf("https://cdn.drivek.com/configurator-imgs/cars/fr/original/MERCEDES/A-CLASS/41348_HATCHBACK-5-DOORS/mercedes-benz-classe-a-hb-front-view.jpg",

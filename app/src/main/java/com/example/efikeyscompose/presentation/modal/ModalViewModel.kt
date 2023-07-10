@@ -7,6 +7,7 @@ import com.example.efikeyscompose.data.dto.Vehicle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,10 +20,9 @@ class ModalViewModel @Inject constructor(
 
 
    //TEMPORARY
-    fun getVehicleByIndedx(indx: Int) {
-        _vehicleStateFlow.value = Vehicle.SAMPLES[indx]
+    fun getVehicleById(id: String) {
+        _vehicleStateFlow.value = Vehicle.SAMPLES.find { vehicle ->
+            vehicle.id == id
+        }!!
     }
-
-
-    
 }

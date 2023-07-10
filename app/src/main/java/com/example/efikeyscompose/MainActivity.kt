@@ -98,10 +98,10 @@ fun AppNavigation() {
         composable(Screen.Modal.route + "/{vehicleId}",
         arguments = listOf(
             navArgument("vehicleId") {
-            type = NavType.IntType
+            type = NavType.StringType
         })) {
             val modalViewModel: ModalViewModel = hiltViewModel()
-            val vehicleId = it.arguments?.getInt("vehicleId") ?: 0
+            val vehicleId = it.arguments?.getString("vehicleId") ?: ""
             ModalScreen(navController, vehicleId, modalViewModel)
         }
     }
