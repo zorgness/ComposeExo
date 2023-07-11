@@ -29,6 +29,7 @@ import com.example.efikeyscompose.presentation.keys.KeyScreen
 import com.example.efikeyscompose.presentation.keys.KeyViewModel
 import com.example.efikeyscompose.presentation.modal.ModalScreen
 import com.example.efikeyscompose.presentation.modal.ModalViewModel
+import com.example.efikeyscompose.presentation.parameters.ParametersScreen
 import com.example.efikeyscompose.presentation.profile.ProfileScreen
 import com.example.efikeyscompose.presentation.site.SiteScreen
 import com.example.efikeyscompose.presentation.site.SiteViewModel
@@ -89,6 +90,10 @@ fun AppNavigation() {
         composable(Screen.Keys.route) {
             val keyViewModel: KeyViewModel = hiltViewModel()
             KeyScreen(navController, keyViewModel)
+        }
+
+        composable(Screen.Parameters.route) {
+            ParametersScreen(navController)
         }
 
         composable(Screen.Profile.route) {

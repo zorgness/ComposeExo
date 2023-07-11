@@ -10,4 +10,5 @@ sealed class Screen(val route: String) {
     object Keys : Screen("keys")
     object Profile : Screen("profile")
     object Modal : Screen("modal")
+    object Parameters : Screen("parameters")
 }

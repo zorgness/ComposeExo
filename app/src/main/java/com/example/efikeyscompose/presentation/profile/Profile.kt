@@ -126,7 +126,7 @@ fun ProfileContent(
 /*
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun com.example.efikeyscompose.presentation.parameters.components.DefaultPreview() {
     EfiKeysComposeTheme {
         
         ProfileContent(

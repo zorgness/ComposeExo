@@ -52,12 +52,10 @@ fun HomeScreen(
         garage = garage,
         vehicleList = vehicleList,
         navController = navController,
-        goToSite = {
-            navController.navigate(Screen.Site.route)
-        },
-        goToVehicleNew = {
-            navController.navigate(Screen.VehicleNew.route)
-        })
+        goTo = {
+            navController.navigate(it.route)
+        }
+    )
 }
 
 @Composable
@@ -66,8 +64,7 @@ fun HomeContent(
     garage: Garage,
     vehicleList: List<Vehicle>,
     navController: NavHostController,
-    goToSite: () -> Unit,
-    goToVehicleNew: () -> Unit,
+    goTo: (Screen) -> Unit,
 ) {
 
     Box(
@@ -79,7 +76,9 @@ fun HomeContent(
                 .fillMaxSize()
                 .align(Alignment.TopCenter)
         ) {
-            HomeHeader(onLogoutIconClicked = {})
+            HomeHeader {
+                goTo(Screen.Parameters)
+            }
 
             Box {
                 AsyncImage(
@@ -126,7 +125,7 @@ fun HomeContent(
                     modifier = Modifier
                         .align(Alignment.Center)
                         .clickable {
-                            goToSite()
+                            goTo(Screen.Site)
                         })
 
             }
@@ -134,7 +133,8 @@ fun HomeContent(
             Button(modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp, vertical = 24.dp)
-                .height(44.dp), onClick = { goToVehicleNew() }) {
+                .height(44.dp),
+                onClick = { goTo(Screen.VehicleNew) }) {
                 Text(
                     text = context.getString(R.string.add_vehicle_to_garage),
                     style = MaterialTheme.typography.h4

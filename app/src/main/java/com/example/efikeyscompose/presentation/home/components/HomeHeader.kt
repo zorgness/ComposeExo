@@ -15,7 +15,7 @@ import com.example.efikeyscompose.R
 
 @Composable
 fun HomeHeader(
-    onLogoutIconClicked: () -> Unit
+    onParamIconClicked: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -48,7 +48,7 @@ fun HomeHeader(
                 contentDescription = null,
                 modifier = Modifier
                     .size(30.dp)
-                    .clickable { onLogoutIconClicked() }
+                    .clickable { onParamIconClicked() }
             )
 
         }
