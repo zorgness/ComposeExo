@@ -24,7 +24,7 @@ fun NotificationItem(
     bottomInfo: String
 ) {
     Card(
-        modifier = Modifier.height(48.dp),
+        modifier = Modifier.height(60.dp),
         shape = RoundedCornerShape(8.dp),
         elevation = 8.dp
     ) {
