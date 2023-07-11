@@ -18,7 +18,8 @@ fun ModalInfoRow(
     resId: Int,
     topInfo: String,
     bottomInfo: String,
-) { Row(
+) {
+    Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
 

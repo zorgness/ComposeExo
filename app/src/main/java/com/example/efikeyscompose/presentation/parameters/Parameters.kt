@@ -100,12 +100,3 @@ fun ParametersContent(
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    EfiKeysComposeTheme {
-        ParametersContent(
-            handleNavBack = {}
-        )
-    }
-}

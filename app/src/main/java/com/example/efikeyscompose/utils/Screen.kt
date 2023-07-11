@@ -11,4 +11,5 @@ sealed class Screen(val route: String) {
     object Profile : Screen("profile")
     object Modal : Screen("modal")
     object Parameters : Screen("parameters")
+    object Notifications : Screen("notifications")
 }

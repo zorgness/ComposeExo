@@ -15,6 +15,7 @@ import com.example.efikeyscompose.R
 
 @Composable
 fun HomeHeader(
+    onNotificationClicked:() -> Unit,
     onParamIconClicked: () -> Unit
 ) {
     Box(
@@ -41,7 +42,7 @@ fun HomeHeader(
                 contentDescription = null,
                 modifier = Modifier
                     .size(30.dp)
-                    .clickable {  }
+                    .clickable { onNotificationClicked() }
             )
             Icon(
                 Icons.Filled.Settings,

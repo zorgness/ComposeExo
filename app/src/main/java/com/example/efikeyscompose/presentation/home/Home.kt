@@ -76,9 +76,11 @@ fun HomeContent(
                 .fillMaxSize()
                 .align(Alignment.TopCenter)
         ) {
-            HomeHeader {
-                goTo(Screen.Parameters)
-            }
+            HomeHeader(
+                onNotificationClicked = { goTo(Screen.Notifications) },
+                onParamIconClicked = { goTo(Screen.Parameters) }
+            )
+
 
             Box {
                 AsyncImage(
